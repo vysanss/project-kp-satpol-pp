@@ -38,6 +38,11 @@
                 :showLogo="false"
             />
 
+            <!-- Judul Page -->
+
+                <h1 class="text-3xl font-bold text-gray-900 text-center mt-4">Tentang Kami</h1>
+
+
             <!-- Profile Section -->
             <section class="py-16 px-4 sm:px-6 lg:px-8">
                 <div class="max-w-7xl mx-auto">

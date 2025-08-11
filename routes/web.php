@@ -1,10 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AdminController;
 
-Route::get('/', function () {
-    return view('home');
-});
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
 
 Route::get('/tentangkami', function () {
     return view('tentangkami');
@@ -49,3 +48,13 @@ Route::get('/dokumen-evaluasi', function () {
 Route::get('/dokumen-perencanaan', function () {
     return view('dokumen-perencanaan');
 })->name('dokumen-perencanaan');
+
+// Route untuk halaman login admin
+Route::get('/admin/login', [AdminController::class, 'showLoginForm'])->name('admin.login');
+Route::post('/admin/login', [AdminController::class, 'login'])->name('admin.login.submit');
+Route::post('/admin/logout', [AdminController::class, 'logout'])->name('admin.logout');
+
+// Route untuk dashboard admin (hanya untuk admin yang sudah login)
+Route::middleware('auth:admin')->group(function () {
+    Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+});

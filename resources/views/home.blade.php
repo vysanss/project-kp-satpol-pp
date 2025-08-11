@@ -26,8 +26,17 @@
   <body class="h-full">
     <div class="min-h-full">
       <x-navbar></x-navbar>
-      <x-banner
       
+      <!-- Banner with fallback props to prevent database issues -->
+      <x-banner 
+        judul="SATPOL PP"
+        sub_judul="Kota Tasikmalaya"
+        deskripsi="Satuan Polisi Pamong Praja Kota Tasikmalaya menjaga ketertiban, keamanan, dan kenyamanan masyarakat dengan integritas dan profesionalisme."
+        logo="img/logo-Pol-PP-png.webp"
+        logoAlt="Logo Satpol PP Tasikmalaya"
+        :showLogo="true"
+        :showNavigation="true"
+        :showStats="true"
       />
       
       <main>
@@ -43,16 +52,7 @@
                 <div class="absolute bottom-0 left-0 w-64 h-64 bg-white/5 rounded-full -ml-32 -mb-32"></div>
                 
                 <div class="relative z-10 grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
-                  <!-- Profile Photo -->
-                  <div class="flex justify-center lg:justify-start">
-                    <div class="relative">
-                      <div class="w-32 h-32 lg:w-40 lg:h-40 rounded-full bg-white/20 backdrop-blur-sm border-4 border-white/30 overflow-hidden shadow-2xl">
-                        <img src="/img/kepala-satpol.jpg" alt="Kepala Satpol PP" class="w-full h-full object-cover" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYwIiBoZWlnaHQ9IjE2MCIgdmlld0JveD0iMCAwIDE2MCAxNjAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxNjAiIGhlaWdodD0iMTYwIiBmaWxsPSIjRjNGNEY2Ii8+CjxjaXJjbGUgY3g9IjgwIiBjeT0iNjQiIHI9IjI0IiBmaWxsPSIjOUI5QkE0Ii8+CjxwYXRoIGQ9Ik08MCA5NkMxMDQuNTUgOTYgMTI0IDEwOC41NCAxMjQgMTI0VjE0MEg2NFYxMjRDNjQgMTA4LjU0IDc5LjQ1IDk2IDk2IDk2IiBmaWxsPSIjOUI5QkE0Ii8+Cjwvc3ZnPgo='">
-                      </div>
-                      <!-- Decorative Ring -->
-                      <div class="absolute inset-0 rounded-full border-2 border-white/40 animate-pulse"></div>
-                    </div>
-                  </div>
+               
                   
                   <!-- Profile Info -->
                   <div class="lg:col-span-2 text-center lg:text-left">
