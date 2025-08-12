@@ -24,7 +24,9 @@
 <body class="h-full">
     <div class="min-h-full">
         <x-navbar />
-        <x-banner/>
+        <x-banner
+        :bannerId="6"
+        />
         
         <main>
             <!-- Kepala Dinas Section -->
