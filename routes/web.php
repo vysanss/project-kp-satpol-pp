@@ -2,10 +2,13 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ProfilPimpinanController;
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
 
 Route::get('/tentangkami', [App\Http\Controllers\TentangKamiController::class, 'index'])->name('tentangkami');
+
+Route::get('/profilpimpinan', [ProfilPimpinanController::class, 'index'])->name('profil.pimpinan');
 
 Route::get('/strukturorganisasi', function () {
     return view('strukturorganisasi');
@@ -19,9 +22,6 @@ Route::get('/maklumatpelayanan', function () {
     return view('maklumatpelayanan');
 })->name('maklumatpelayanan');
 
-Route::get('/profilpimpinan', function () {
-    return view('profilpimpinan');
-})->name('profilpimpinan');
 
 Route::get('/berita', function () {
     return view('berita');
