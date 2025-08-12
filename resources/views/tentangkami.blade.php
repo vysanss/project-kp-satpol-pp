@@ -39,16 +39,22 @@
                     <div class="bg-white rounded-xl shadow-lg p-8 lg:p-12 mb-12">
                         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                             <div>
-                                <h2 class="text-3xl font-bold text-gray-900 mb-6">Profil Organisasi</h2>
+                                <h2 class="text-3xl font-bold text-gray-900 mb-6">{{ $tentangkami->judul }}</h2>
                                 <p class="text-lg text-gray-700 leading-relaxed mb-4">
-                                    Satuan Polisi Pamong Praja Kota Tasikmalaya adalah perangkat daerah yang bertugas dalam penegakan Peraturan Daerah dan Peraturan Kepala Daerah, penyelenggaraan ketertiban umum dan ketentraman, serta perlindungan masyarakat.
+                                    {{ $tentangkami->deskripsi_1 }}
                                 </p>
+                                @if($tentangkami->deskripsi_2)
                                 <p class="text-lg text-gray-700 leading-relaxed">
-                                    Kami berkomitmen memberikan pelayanan terbaik dengan mengedepankan integritas, profesionalisme, dan dedikasi tinggi untuk menciptakan lingkungan yang aman, tertib, dan nyaman bagi seluruh masyarakat Kota Tasikmalaya.
+                                    {{ $tentangkami->deskripsi_2 }}
                                 </p>
+                                @endif
                             </div>
                             <div class="bg-gray-200 rounded-lg h-64 flex items-center justify-center">
-                                <span class="text-gray-500">Gambar Kantor Satpol PP</span>
+                                @if($tentangkami->gambar)
+                                    <img src="{{ asset('storage/' . $tentangkami->gambar) }}" alt="Gambar Kantor Satpol PP" class="object-cover h-full w-full rounded-lg" />
+                                @else
+                                    <span class="text-gray-500">Gambar Kantor Satpol PP</span>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -66,7 +72,7 @@
                                 <h3 class="text-2xl font-bold text-gray-900">Visi</h3>
                             </div>
                             <p class="text-gray-700 text-center leading-relaxed">
-                                "Terwujudnya Kota Tasikmalaya yang aman, tertib, dan tentram melalui penegakan Perda yang konsisten dan pelayanan prima kepada masyarakat."
+                                "{{ $tentangkami->visi }}"
                             </p>
                         </div>
 
@@ -79,24 +85,9 @@
                                 </div>
                                 <h3 class="text-2xl font-bold text-gray-900">Misi</h3>
                             </div>
-                            <ul class="text-gray-700 space-y-2">
-                                <li class="flex items-start">
-                                    <span class="text-green-600 mr-2">•</span>
-                                    Melaksanakan penegakan Perda dan Perkada secara konsisten
-                                </li>
-                                <li class="flex items-start">
-                                    <span class="text-green-600 mr-2">•</span>
-                                    Menjaga ketertiban umum dan ketentraman masyarakat
-                                </li>
-                                <li class="flex items-start">
-                                    <span class="text-green-600 mr-2">•</span>
-                                    Memberikan perlindungan kepada masyarakat
-                                </li>
-                                <li class="flex items-start">
-                                    <span class="text-green-600 mr-2">•</span>
-                                    Meningkatkan kualitas pelayanan publik
-                                </li>
-                            </ul>
+                            <p class="text-gray-700 text-center leading-relaxed">
+                                "{{ $tentangkami->misi }}"
+                            </p>
                         </div>
                     </div>
 

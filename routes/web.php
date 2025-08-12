@@ -5,9 +5,7 @@ use App\Http\Controllers\AdminController;
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
 
-Route::get('/tentangkami', function () {
-    return view('tentangkami');
-})->name('tentangkami');
+Route::get('/tentangkami', [App\Http\Controllers\TentangKamiController::class, 'index'])->name('tentangkami');
 
 Route::get('/strukturorganisasi', function () {
     return view('strukturorganisasi');
