@@ -24,14 +24,7 @@
 <body class="h-full">
     <div class="min-h-full">
         <x-navbar />
-        <x-banner 
-            title="Tugas Pokok dan Fungsi" 
-            subtitle="Mengenal lebih dekat tugas dan fungsi Satuan Polisi Pamong Praja Kota Tasikmalaya."
-            description=""
-            :showNavigation="true"
-            :showStats="false"
-            :showLogo="false"
-        />
+        <x-banner/>
         
         <main>
             <!-- Introduction Section -->

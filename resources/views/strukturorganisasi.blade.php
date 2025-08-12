@@ -26,13 +26,8 @@
 <body class="h-full">
     <div class="min-h-full">
         <x-navbar />
-        <x-banner 
-            title="Struktur Organisasi" 
-            subtitle="Mengenal susunan dan peran masing-masing bagian dalam Satuan Polisi Pamong Praja Kota Tasikmalaya."
-            description=""
-            :showNavigation="true"
-            :showStats="false"
-            :showLogo="false"
+        <x-banner
+            :bannerId="3"
         />
         <main>
             <section class="flex justify-center items-center py-4 px-4 sm:px-8">

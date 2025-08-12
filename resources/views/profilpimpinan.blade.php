@@ -24,14 +24,7 @@
 <body class="h-full">
     <div class="min-h-full">
         <x-navbar />
-        <x-banner 
-            title="Profil Pimpinan" 
-            subtitle="Mengenal lebih dekat para pemimpin Satuan Polisi Pamong Praja Kota Tasikmalaya"
-            description="Dedikasi dan komitmen untuk melayani masyarakat dengan integritas tinggi"
-            :showNavigation="true"
-            :showStats="false"
-            :showLogo="false"
-        />
+        <x-banner/>
         
         <main>
             <!-- Kepala Dinas Section -->

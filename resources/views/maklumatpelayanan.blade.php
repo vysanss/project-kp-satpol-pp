@@ -24,14 +24,7 @@
 <body class="h-full">
     <div class="min-h-full">
         <x-navbar />
-        <x-banner 
-            title="Maklumat Pelayanan" 
-            subtitle="Komitmen kami untuk memberikan pelayanan terbaik kepada masyarakat Kota Tasikmalaya."
-            description=""
-            :showNavigation="true"
-            :showStats="false"
-            :showLogo="false"
-        />
+        <x-banner/>
         
         <main>
             <!-- Introduction Section -->

@@ -1,4 +1,5 @@
 @props([
+    'bannerId' => null,
     'banner' => null,
     'judul' => 'SATPOL PP',
     'sub_judul' => 'Kota Tasikmalaya',
@@ -39,14 +40,21 @@
 ])
 
 @php
-    // Try to get banner from database only if Banner model exists and no props provided
+    // Try to get banner from database
     $bannerData = null;
     
     if ($banner) {
         $bannerData = $banner;
+    } elseif ($bannerId && class_exists('App\Models\Banner')) {
+        try {
+            $bannerData = \App\Models\Banner::where('id', $bannerId)->where('is_active', true)->first();
+        } catch (\Exception $e) {
+            // Database connection failed, use fallback
+            $bannerData = null;
+        }
     } elseif (class_exists('App\Models\Banner')) {
         try {
-            $bannerData = \App\Models\Banner::active()->first();
+            $bannerData = \App\Models\Banner::where('is_active', true)->first();
         } catch (\Exception $e) {
             // Database connection failed, use fallback
             $bannerData = null;
@@ -67,6 +75,28 @@
             'navigation_items' => $navigationItems,
             'stats' => $stats
         ];
+    } else {
+        // If we have database data, ensure proper structure
+        $bannerData->show_navigation = (bool) $bannerData->show_navigation;
+        $bannerData->show_stats = (bool) $bannerData->show_stats;
+        $bannerData->show_logo = (bool) $bannerData->show_logo;
+        
+        // Handle navigation items from database or use fallback
+        if (empty($bannerData->navigation_items)) {
+            $bannerData->navigation_items = $navigationItems;
+        } elseif (is_string($bannerData->navigation_items)) {
+            $bannerData->navigation_items = json_decode($bannerData->navigation_items, true) ?: $navigationItems;
+        }
+        
+        // Handle stats from database or use fallback
+        if (!isset($bannerData->stats)) {
+            $bannerData->stats = [
+                ['value' => $bannerData->tahun_melayani ?? '20+', 'label' => 'Tahun Melayani'],
+                ['value' => $bannerData->personil_aktif ?? '150+', 'label' => 'Personil Aktif'],
+                ['value' => $bannerData->kecamatan ?? '10', 'label' => 'Kecamatan'],
+                ['value' => $bannerData->kelurahan ?? '69', 'label' => 'Kelurahan']
+            ];
+        }
     }
 @endphp
 

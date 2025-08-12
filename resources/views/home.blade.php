@@ -26,22 +26,13 @@
   <body class="h-full">
     <div class="min-h-full">
       <x-navbar></x-navbar>
-      
-      <!-- Banner with fallback props to prevent database issues -->
-      <x-banner 
-        judul="SATPOL PP"
-        sub_judul="Kota Tasikmalaya"
-        deskripsi="Satuan Polisi Pamong Praja Kota Tasikmalaya menjaga ketertiban, keamanan, dan kenyamanan masyarakat dengan integritas dan profesionalisme."
-        logo="img/logo-Pol-PP-png.webp"
-        logoAlt="Logo Satpol PP Tasikmalaya"
-        :showLogo="true"
-        :showNavigation="true"
-        :showStats="true"
+      <x-banner
+      :bannerId="1"
       />
       
       <main>
         <!-- Profile Card Section -->
-        <section class="bg-white py-12 sm:py-16 border-b border-gray-100">
+        <section class="bg-white py-12 sm:py-16 border-b border-gray-100 relative z-10">
           
           <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div class="bg-gradient-to-r from-blue-600 to-blue-800 rounded-3xl shadow-2xl overflow-hidden">

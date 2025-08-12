@@ -29,19 +29,9 @@
         
         <main>
             <!-- Hero Section -->
-            <x-banner 
-                title="Tentang Kami" 
-                subtitle="Mengenal lebih dekat Satuan Polisi Pamong Praja Kota Tasikmalaya, visi, misi, dan nilai-nilai yang kami junjung dalam melayani masyarakat."
-                description=""
-                :showNavigation="true"
-                :showStats="false"
-                :showLogo="false"
+            <x-banner
+                :bannerId="2"
             />
-
-            <!-- Judul Page -->
-
-                <h1 class="text-3xl font-bold text-gray-900 text-center mt-4">Tentang Kami</h1>
-
 
             <!-- Profile Section -->
             <section class="py-16 px-4 sm:px-6 lg:px-8">
