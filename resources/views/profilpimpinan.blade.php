@@ -46,7 +46,7 @@
                                     <div class="lg:col-span-1">
                                         <div class="relative">
                                             <div class="w-64 h-80 mx-auto bg-gray-200 rounded-lg overflow-hidden shadow-lg">
-                                                <img src="{{ $leader->foto_url }}" alt="{{ $leader->nama }}" class="w-full h-full object-cover">
+                                                <img src="{{ asset($leader->foto) }}" alt="{{ $leader->nama }}" class="w-full h-full object-cover">
                                             </div>
                                             <div class="absolute -bottom-4 left-1/2 transform -translate-x-1/2">
                                                 <div class="bg-blue-600 text-white px-6 py-2 rounded-full text-sm font-medium">

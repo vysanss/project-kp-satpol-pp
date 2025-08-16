@@ -51,7 +51,7 @@
                             </div>
                             <div class="bg-gray-200 rounded-lg h-64 flex items-center justify-center">
                                 @if($tentangkami->gambar)
-                                    <img src="{{ asset('storage/' . $tentangkami->gambar) }}" alt="Gambar Kantor Satpol PP" class="object-cover h-full w-full rounded-lg" />
+                                    <img src="{{ asset($tentangkami->gambar) }}" alt="Gambar Kantor Satpol PP" class="object-cover h-full w-full rounded-lg" />
                                 @else
                                     <span class="text-gray-500">Gambar Kantor Satpol PP</span>
                                 @endif
