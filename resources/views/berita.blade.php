@@ -126,70 +126,50 @@
 
                     <!-- News Grid -->
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="news-grid">
-                        {{-- Sample news cards --}}
-                        @php
-                            $sampleNews = [
-                                ['title' => 'Operasi Tertib Satpol PP di Wilayah Pasar Tradisional', 'category' => 'Berita'],
-                                ['title' => 'Penyuluhan Perda tentang Ketertiban Umum', 'category' => 'Artikel'],
-                                ['title' => 'Pengawasan Pedagang Kaki Lima di Area Perkantoran', 'category' => 'Berita'],
-                                ['title' => 'Sosialisasi Peraturan Daerah Terbaru', 'category' => 'Produk Hukum'],
-                                ['title' => 'Evaluasi Kinerja Satpol PP Semester I', 'category' => 'Dokumen Evaluasi'],
-                                ['title' => 'Rencana Kerja Tahunan Satpol PP 2025', 'category' => 'Dokumen Perencanaan'],
-                                ['title' => 'Peningkatan Kapasitas SDM Satpol PP', 'category' => 'Berita'],
-                                ['title' => 'Koordinasi dengan Instansi Terkait', 'category' => 'Artikel'],
-                                ['title' => 'Pemeliharaan Keamanan dan Ketertiban', 'category' => 'Berita']
-                            ];
-                        @endphp
-                        
-                        @foreach($sampleNews as $index => $news)
+                        {{-- News cards from database --}}
+                        @forelse($beritas as $berita)
                         <article class="news-card bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl hover:scale-105 transition-all duration-300 cursor-pointer group">
                             <div class="relative overflow-hidden">
-                                <img src="{{ asset('img/placeholder-news.jpg') }}" 
-                                     alt="{{ $news['title'] }}" 
+                                <img src="{{ $berita->image ? asset($berita->image) : asset('img/placeholder-news.jpg') }}" 
+                                     alt="{{ $berita->title }}" 
                                      class="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-300">
                                 <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                             </div>
                             <div class="p-6">
                                 <div class="flex items-center gap-2 mb-3">
-                                    <span class="px-3 py-1 bg-blue-100 text-blue-800 text-xs font-medium rounded-full group-hover:bg-blue-200 transition-colors duration-300">{{ $news['category'] }}</span>
-                                    <span class="text-xs text-gray-500 group-hover:text-gray-600 transition-colors duration-300">{{ now()->subDays($index + 1)->format('l, d F Y') }}</span>
+                                    <span class="px-3 py-1 bg-blue-100 text-blue-800 text-xs font-medium rounded-full group-hover:bg-blue-200 transition-colors duration-300">{{ $berita->category }}</span>
+                                    <span class="text-xs text-gray-500 group-hover:text-gray-600 transition-colors duration-300">{{ \Carbon\Carbon::parse($berita->published_at)->translatedFormat('l, d F Y') }}</span>
                                 </div>
                                 <h3 class="font-bold text-gray-800 mb-2 line-clamp-2 group-hover:text-[#0D0D8C] transition-colors duration-300">
-                                    {{ $news['title'] }}
+                                    {{ $berita->title }}
                                 </h3>
                                 <p class="text-gray-600 text-sm mb-4 line-clamp-3 group-hover:text-gray-700 transition-colors duration-300">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.
+                                    {{ \Illuminate\Support\Str::limit(strip_tags($berita->content), 120) }}
                                 </p>
                                 <div class="flex items-center justify-between">
-                                    <a href="#" class="inline-flex items-center text-[#0D0D8C] hover:text-[#2020a9] font-semibold text-sm group/link transition-colors duration-300">
-                                        Baca Selengkapnya
-                                        <svg class="w-4 h-4 ml-2 group-hover/link:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-                                        </svg>
-                                    </a>
+                                    <form action="{{ route('berita.detail') }}" method="POST" class="inline">
+                                        @csrf
+                                        <input type="hidden" name="berita_id" value="{{ $berita->id }}">
+                                        <button type="submit" class="inline-flex items-center text-[#0D0D8C] hover:text-[#2020a9] font-semibold text-sm group/link transition-colors duration-300">
+                                            Baca Selengkapnya
+                                            <svg class="w-4 h-4 ml-2 group-hover/link:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                                            </svg>
+                                        </button>
+                                    </form>
                                 </div>
                             </div>
                         </article>
-                        @endforeach
+                        @empty
+                        <div class="col-span-3 text-center text-gray-500 py-12">
+                            Tidak ada berita ditemukan.
+                        </div>
+                        @endforelse
                     </div>
 
                     <!-- Pagination -->
                     <div class="flex justify-center items-center mt-10 space-x-2" id="pagination">
-                        <a href="#" class="pagination-btn px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 opacity-50 pointer-events-none">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
-                            </svg>
-                        </a>
-                        @for($page = 1; $page <= 3; $page++)
-                        <a href="#" class="pagination-btn px-4 py-2 rounded-lg {{ $page == 1 ? 'bg-[#0D0D8C] text-white' : 'border border-gray-300 hover:bg-gray-50' }}">
-                            {{ $page }}
-                        </a>
-                        @endfor
-                        <a href="#" class="pagination-btn px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                            </svg>
-                        </a>
+                        {{ $beritas->withQueryString()->links() }}
                     </div>
                 </div>
             </section>
@@ -235,6 +215,26 @@
         }
         .filter-tab.active:hover {
             background-color: #2020a9;
+        }
+
+        .line-clamp-2 {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .line-clamp-3 {
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+    </style>
+</body>
+</html>
+</body>
+</html>
         }
 
         .line-clamp-2 {
