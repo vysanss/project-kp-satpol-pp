@@ -29,57 +29,29 @@
                         <div class="flex flex-col lg:flex-row gap-8">
                             <div class="flex-1">
                                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-                                    <!-- Kartu Layanan 1 -->
+                                    @foreach($layanans as $layanan)
                                     <div class="bg-gray-50 rounded-lg shadow p-6 flex flex-col items-center h-full transform hover:scale-105 transition-transform duration-200">
-                                        <div class="bg-blue-100 text-blue-600 rounded-full p-4 mb-4">
-                                            <!-- Icon: Shield -->
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3l8 4v5c0 5.25-3.5 9.75-8 11-4.5-1.25-8-5.75-8-11V7l8-4z" />
-                                            </svg>
+                                        <div class="rounded-full p-4 mb-4" style="background-color: #f0f4ff;">
+                                            {!! $layanan->icon !!}
                                         </div>
-                                        <h2 class="text-xl font-semibold mb-2 text-center">Penegakan Perda & Perkada</h2>
+                                        <h2 class="text-xl font-semibold mb-2 text-center">{{ $layanan->title }}</h2>
                                         <p class="text-gray-600 text-center">
-                                            Melaksanakan penegakan Peraturan Daerah dan Peraturan Kepala Daerah untuk menjaga ketertiban umum dan ketentraman masyarakat.
+                                            {{ $layanan->description }}
                                         </p>
                                     </div>
-                                    <!-- Kartu Layanan 2 -->
-                                    <div class="bg-gray-50 rounded-lg shadow p-6 flex flex-col items-center h-full transform hover:scale-105 transition-transform duration-200">
-                                        <div class="bg-green-100 text-green-600 rounded-full p-4 mb-4">
-                                            <!-- Icon: Users -->
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a4 4 0 00-3-3.87M9 20H4v-2a4 4 0 013-3.87M16 3.13a4 4 0 010 7.75M8 3.13a4 4 0 000 7.75" />
-                                            </svg>
-                                        </div>
-                                        <h2 class="text-xl font-semibold mb-2 text-center">Ketertiban Umum & Ketentraman</h2>
-                                        <p class="text-gray-600 text-center">
-                                            Menjaga dan memelihara ketertiban umum serta memberikan perlindungan kepada masyarakat di wilayah Kota Tasikmalaya.
-                                        </p>
-                                    </div>
-                                    <!-- Kartu Layanan 3 -->
-                                    <div class="bg-gray-50 rounded-lg shadow p-6 flex flex-col items-center h-full transform hover:scale-105 transition-transform duration-200">
-                                        <div class="bg-yellow-100 text-yellow-600 rounded-full p-4 mb-4">
-                                            <!-- Icon: Bell Alert -->
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V4a2 2 0 10-4 0v1.341C7.67 7.165 6 9.388 6 12v2.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
-                                            </svg>
-                                        </div>
-                                        <h2 class="text-xl font-semibold mb-2 text-center">Pengaduan & Tindak Lanjut</h2>
-                                        <p class="text-gray-600 text-center">
-                                            Menerima dan menindaklanjuti laporan atau pengaduan masyarakat terkait pelanggaran ketertiban umum dan Perda.
-                                        </p>
-                                    </div>
+                                    @endforeach
                                 </div>
                             </div>
                             <!-- Card Kontak -->
                             <div class="w-full lg:w-80 xl:w-96 flex-shrink-0">
                                 <div class="bg-gradient-to-br from-blue-50 to-white border border-gray-200 rounded-lg shadow-lg p-6 h-full sticky top-8">
-                                    <div class="bg-blue-500 text-white rounded-full p-3 mb-4">
+                                    <div class="bg-blue-500 text-white rounded-full p-3 mb-4 flex flex-row items-center justify-center gap-2">
                                         <!-- Icon: Phone -->
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 mb-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H5a2 2 0 01-2-2V5zm0 10a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H5a2 2 0 01-2-2v-2zm10-10a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zm0 10a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
                                         </svg>
+                                        <span class="text-lg font-bold text-white text-center">Kontak Satpol PP</span>
                                     </div>
-                                    <h3 class="text-lg font-bold mb-2 text-center">Kontak Satpol PP</h3>
                                     <ul class="text-gray-700 text-sm space-y-2 w-full">
                                         <li class="flex items-center gap-2">
                                             <span class="font-semibold">Telepon:</span>
@@ -98,6 +70,34 @@
                                         Kirim Email
                                     </a>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+    <x-footer />
+    
+    <script>
+        // Auto scroll to top on page load/refresh
+        window.addEventListener('load', function() {
+            window.scrollTo(0, 0);
+        });
+        
+        // Scroll to top before page unload (for refresh)
+        window.addEventListener('beforeunload', function() {
+            window.scrollTo(0, 0);
+        });
+        
+        // Force scroll to top immediately
+        if (history.scrollRestoration) {
+            history.scrollRestoration = 'manual';
+        }
+        window.scrollTo(0, 0);
+    </script>
+</body>
+</html>
                             </div>
                         </div>
                     </div>

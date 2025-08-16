@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProfilPimpinanController;
+use App\Http\Controllers\LayananController;
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
 
@@ -27,9 +28,7 @@ Route::get('/berita', function () {
     return view('berita');
 })->name('berita');
 
-Route::get('/layanan', function () {
-    return view('layanan');
-})->name('layanan');
+Route::get('/layanan', [LayananController::class, 'index'])->name('layanan');
 
 Route::get('/artikel', function () {
     return view('artikel');
