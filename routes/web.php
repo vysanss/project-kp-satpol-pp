@@ -5,6 +5,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProfilPimpinanController;
 use App\Http\Controllers\LayananController;
 use App\Http\Controllers\BeritaController;
+use App\Http\Controllers\ArtikelController;
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
 
@@ -31,9 +32,7 @@ Route::post('/berita/detail', [BeritaController::class, 'detail'])->name('berita
 
 Route::get('/layanan', [LayananController::class, 'index'])->name('layanan');
 
-Route::get('/artikel', function () {
-    return view('artikel');
-})->name('artikel');
+Route::get('/artikel', [ArtikelController::class, 'index'])->name('artikel');
 
 Route::get('/produk-hukum', function () {
     return view('produk-hukum');

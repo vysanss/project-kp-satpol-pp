@@ -127,39 +127,24 @@
 
                     <!-- Article Grid -->
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="article-grid">
-                        {{-- Sample article cards --}}
-                        @php
-                            $sampleArticles = [
-                                ['title' => 'Peran Satpol PP dalam Menjaga Ketertiban Umum', 'category' => 'Edukasi', 'excerpt' => 'Memahami tugas dan fungsi Satpol PP dalam menjaga ketertiban dan keamanan di lingkungan masyarakat.'],
-                                ['title' => 'Tips Edukasi Hukum untuk Warga Kota', 'category' => 'Tips', 'excerpt' => 'Pentingnya edukasi hukum agar masyarakat lebih sadar akan aturan dan peraturan daerah.'],
-                                ['title' => 'Analisis Penegakan Perda di Era Digital', 'category' => 'Analisa', 'excerpt' => 'Bagaimana teknologi membantu penegakan Peraturan Daerah di era modern.'],
-                                ['title' => 'Kolaborasi Satpol PP dengan Instansi Lain', 'category' => 'Opini', 'excerpt' => 'Pentingnya sinergi Satpol PP dengan berbagai instansi untuk pelayanan publik yang lebih baik.'],
-                                ['title' => 'Strategi Sosialisasi Perda yang Efektif', 'category' => 'Tips', 'excerpt' => 'Metode-metode efektif dalam menyosialisasikan Peraturan Daerah kepada masyarakat.'],
-                                ['title' => 'Penanganan PKL yang Humanis dan Berkeadilan', 'category' => 'Edukasi', 'excerpt' => 'Pendekatan humanis dalam penanganan Pedagang Kaki Lima demi terciptanya keharmonisan.'],
-                                ['title' => 'Transformasi Digital Satpol PP Tasikmalaya', 'category' => 'Analisa', 'excerpt' => 'Analisis perubahan dan inovasi dalam pelayanan Satpol PP di era digitalisasi.'],
-                                ['title' => 'Membangun Kesadaran Hukum Masyarakat', 'category' => 'Opini', 'excerpt' => 'Pentingnya membangun kesadaran hukum sejak dini untuk menciptakan masyarakat yang tertib.'],
-                                ['title' => 'Panduan Melaporkan Pelanggaran Perda', 'category' => 'Tips', 'excerpt' => 'Langkah-langkah yang dapat dilakukan masyarakat untuk melaporkan pelanggaran Peraturan Daerah.']
-                            ];
-                        @endphp
-                        
-                        @foreach($sampleArticles as $index => $article)
+                        @foreach($articles as $article)
                         <article class="article-card bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl hover:scale-105 transition-all duration-300 cursor-pointer group">
                             <div class="relative overflow-hidden">
-                                <img src="{{ asset('img/placeholder-news.jpg') }}" 
-                                     alt="{{ $article['title'] }}" 
+                                <img src="{{ asset($article->image) }}" 
+                                     alt="{{ $article->title }}" 
                                      class="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-300">
                                 <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                             </div>
                             <div class="p-6">
                                 <div class="flex items-center gap-2 mb-3">
-                                    <span class="px-3 py-1 bg-green-100 text-green-800 text-xs font-medium rounded-full group-hover:bg-green-200 transition-colors duration-300">{{ $article['category'] }}</span>
-                                    <span class="text-xs text-gray-500 group-hover:text-gray-600 transition-colors duration-300">{{ now()->subDays($index + 1)->format('l, d F Y') }}</span>
+                                    <span class="px-3 py-1 bg-green-100 text-green-800 text-xs font-medium rounded-full group-hover:bg-green-200 transition-colors duration-300">{{ $article->category }}</span>
+                                    <span class="text-xs text-gray-500 group-hover:text-gray-600 transition-colors duration-300">{{ \Carbon\Carbon::parse($article->published_at)->translatedFormat('l, d F Y') }}</span>
                                 </div>
                                 <h3 class="font-bold text-gray-800 mb-2 line-clamp-2 group-hover:text-[#0D0D8C] transition-colors duration-300">
-                                    {{ $article['title'] }}
+                                    {{ $article->title }}
                                 </h3>
                                 <p class="text-gray-600 text-sm mb-4 line-clamp-3 group-hover:text-gray-700 transition-colors duration-300">
-                                    {{ $article['excerpt'] }}
+                                    {{ $article->excerpt }}
                                 </p>
                                 <div class="flex items-center justify-between">
                                     <a href="#" class="inline-flex items-center text-[#0D0D8C] hover:text-[#2020a9] font-semibold text-sm group/link transition-colors duration-300">
@@ -176,21 +161,7 @@
 
                     <!-- Pagination -->
                     <div class="flex justify-center items-center mt-10 space-x-2" id="pagination">
-                        <a href="#" class="pagination-btn px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 opacity-50 pointer-events-none">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
-                            </svg>
-                        </a>
-                        @for($page = 1; $page <= 3; $page++)
-                        <a href="#" class="pagination-btn px-4 py-2 rounded-lg {{ $page == 1 ? 'bg-[#0D0D8C] text-white' : 'border border-gray-300 hover:bg-gray-50' }}">
-                            {{ $page }}
-                        </a>
-                        @endfor
-                        <a href="#" class="pagination-btn px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                            </svg>
-                        </a>
+                        {{ $articles->links() }}
                     </div>
                 </div>
             </section>
@@ -227,6 +198,35 @@
             color: #374151;         
             transition: all 0.2s;
         }
+        .filter-tab:hover {
+            background-color: #d1d5db;
+            color: #222;
+        }
+        .filter-tab.active {
+            background-color: #0D0D8C;
+            color: #fff;
+        }
+        .filter-tab.active:hover {
+            background-color: #2020a9;
+            color: #fff;
+        }
+
+        .line-clamp-2 {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .line-clamp-3 {
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+    </style>
+</body>
+</html>
         .filter-tab:hover {
             background-color: #d1d5db;
             color: #222;
