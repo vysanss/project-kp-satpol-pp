@@ -11,9 +11,10 @@ class Pdf extends Model
     
     protected $fillable = [
         'nama_file',
-        'file_path',
+        'path',
         'ukuran_file',
-        'tipe_file'
+        'tipe_file',
+        'kategori',
     ];
     
     protected $dates = [

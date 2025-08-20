@@ -72,8 +72,14 @@
                     </div>
                 </div>
 
+                <!-- Form Upload PDF -->
                 <form action="{{ route('pdf.upload') }}" method="POST" enctype="multipart/form-data" class="space-y-4">
                     @csrf
+                    <!-- Info: File akan tersimpan ke tabel pdfs -->
+                    <div class="mb-2 text-xs text-gray-500">
+                        File PDF yang diupload akan langsung tersimpan ke tabel <span class="font-semibold">pdfs</span> di database dan dapat dikelola di bawah.
+                    </div>
+
                     <div>
                         <label class="block text-gray-700 text-sm font-semibold mb-2" for="pdf">
                             <i class="fas fa-file-pdf mr-1 text-red-500"></i>

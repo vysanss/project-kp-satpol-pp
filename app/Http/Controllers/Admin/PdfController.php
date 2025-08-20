@@ -25,8 +25,13 @@ class PdfController extends Controller
             $file = $request->file('pdf');
             $filename = time() . '_' . $file->getClientOriginalName();
             $destination = public_path('pdfs');
+            // Ensure the directory exists
+            if (!file_exists($destination)) {
+                mkdir($destination, 0777, true);
+            }
             $file->move($destination, $filename);
 
+            // Simpan ke database, path relatif ke public
             \App\Models\Pdf::create([
                 'nama_file' => $file->getClientOriginalName(),
                 'path' => 'pdfs/' . $filename,
