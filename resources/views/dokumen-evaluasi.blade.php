@@ -85,6 +85,7 @@
                 <div class="container mx-auto max-w-6xl px-4">
                     <form method="GET" action="{{ url('/dokumen-evaluasi') }}">
                         <x-infocategory />
+                         {{-- konten utama /> --}}
                         <div class="flex flex-col md:flex-row gap-4 items-center justify-center mb-6">
                             <div class="relative w-full">
                                 <input type="text" name="search" value="{{ request('search') }}" placeholder="Cari dokumen evaluasi..." class="w-full px-4 py-3 pr-11 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0D0D8C] focus:border-[#0D0D8C] transition" autocomplete="off">
@@ -107,33 +108,103 @@
                     </form>
                     <!-- Table List Dokumen Evaluasi -->
                     <div class="overflow-x-auto bg-white rounded-xl shadow">
-                        <table class="min-w-full divide-y divide-gray-200">
-                            <thead class="bg-gray-100">
-                                <tr>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">No</th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">Judul</th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">Tahun</th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">Unduh</th>
-                                </tr>
-                            </thead>
-                            <tbody class="divide-y divide-gray-200">
-                                @for($i = 1; $i <= 5; $i++)
-                                <tr>
-                                    <td class="px-6 py-4 whitespace-nowrap">{{ $i }}</td>
-                                    <td class="px-6 py-4 whitespace-nowrap">Evaluasi Kinerja Semester {{ $i }} Tahun 20{{ 20+$i }}</td>
-                                    <td class="px-6 py-4 whitespace-nowrap">20{{ 20+$i }}</td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <a href="#" class="text-blue-600 hover:underline flex items-center gap-1">
-                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2M7 10l5 5 5-5M12 15V3"></path>
-                                            </svg>
-                                            Unduh
-                                        </a>
-                                    </td>
-                                </tr>
-                                @endfor
-                            </tbody>
-                        </table>
+                        @if(isset($documents) && $documents->count() > 0)
+                            <table class="min-w-full divide-y divide-gray-200">
+                                <thead class="bg-gray-100">
+                                    <tr>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">No</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">Judul Dokumen</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">Tahun</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">Ukuran File</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="bg-white divide-y divide-gray-200">
+                                    @foreach($documents as $index => $document)
+                                        @if($document->kategori == 'dokumen_evaluasi')
+                                        <tr class="hover:bg-gray-50 transition-colors duration-200">
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                                                {{ $documents->firstItem() + $index }}
+                                            </td>
+                                            <td class="px-6 py-4">
+                                                <div class="flex items-center">
+                                                    <div class="flex-shrink-0 mr-3">
+                                                        <div class="w-8 h-8 bg-red-100 rounded-lg flex items-center justify-center">
+                                                            <svg class="w-5 h-5 text-red-600" fill="currentColor" viewBox="0 0 20 20">
+                                                                <path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z" clip-rule="evenodd"/>
+                                                            </svg>
+                                                        </div>
+                                                    </div>
+                                                    <div>
+                                                        <div class="text-sm font-medium text-gray-900">{{ $document->nama_file }}</div>
+                                                        <div class="text-sm text-gray-500">Dokumen Evaluasi Kinerja</div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                                                    {{ date('Y', strtotime($document->created_at)) }}
+                                                </span>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                                @if($document->path && file_exists(public_path($document->path)))
+                                                    {{ number_format(filesize(public_path($document->path)) / 1024, 0) }} KB
+                                                @else
+                                                    N/A
+                                                @endif
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <div class="flex space-x-2">
+                                                    @if($document->path)
+                                                        <a href="{{ route('pdf.download', $document->id) }}" 
+                                                           class="inline-flex items-center px-3 py-1.5 border border-gray-300 text-xs font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors duration-200">
+                                                            <svg class="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2M7 10l5 5 5-5M12 15V3"/>
+                                                            </svg>
+                                                            Unduh
+                                                        </a>
+                                                    @else
+                                                        <span class="inline-flex items-center px-3 py-1.5 text-xs font-medium text-gray-400">
+                                                            File tidak tersedia
+                                                        </span>
+                                                    @endif
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        @endif
+                                    @endforeach
+                                </tbody>
+                            </table>
+                            
+                            <!-- Pagination -->
+                            @if($documents->hasPages())
+                                <div class="px-6 py-4 bg-gray-50 border-t border-gray-200">
+                                    {{ $documents->appends(request()->query())->links() }}
+                                </div>
+                            @endif
+                        @else
+                            <!-- Empty State -->
+                            <div class="text-center py-16">
+                                <div class="mx-auto w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mb-4">
+                                    <svg class="w-12 h-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                                    </svg>
+                                </div>
+                                <h3 class="text-lg font-medium text-gray-900 mb-2">Belum ada dokumen evaluasi</h3>
+                                <p class="text-gray-500 mb-6">
+                                    @if(request('search') || request('year'))
+                                        Tidak ada dokumen yang sesuai dengan pencarian Anda.
+                                    @else
+                                        Dokumen evaluasi kinerja belum tersedia saat ini.
+                                    @endif
+                                </p>
+                                @if(request('search') || request('year'))
+                                    <a href="{{ url('/dokumen-evaluasi') }}" class="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                                        Lihat Semua Dokumen
+                                    </a>
+                                @endif
+                            </div>
+                        @endif
                     </div>
                 </div>
             </section>
@@ -160,3 +231,4 @@
     </script>
 </body>
 </html>
+

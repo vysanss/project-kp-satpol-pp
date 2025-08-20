@@ -2,54 +2,118 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use App\Models\Pdf;
-use Illuminate\Support\Facades\Response;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class PdfController extends Controller
 {
-    // Upload PDF
-    public function upload(Request $request)
+    public function produkHukum(Request $request)
     {
-        $request->validate([
-            'pdf' => 'required|mimes:pdf|max:2048',
-            'kategori' => 'required|in:produk_hukum,dokumen_evaluasi,dokumen_perencanaan',
-        ]);
-
-        $file = $request->file('pdf');
-        $namaFile = time() . '_' . $file->getClientOriginalName();
-
-        // Simpan file ke public/pdfs/kategori
-        $file->move(public_path('pdfs/' . $request->kategori), $namaFile);
-
-        // Simpan info ke database
-        Pdf::create([
-            'nama_file' => $namaFile,
-            'path' => 'pdfs/' . $request->kategori . '/' . $namaFile,
-            'kategori' => $request->kategori,
-        ]);
-
-        return redirect()->route('pdf.list', $request->kategori);
+        $query = Pdf::query();
+        
+        // Search functionality
+        if ($request->filled('search')) {
+            $query->where('nama_file', 'like', '%' . $request->search . '%');
+        }
+        
+        // Year filter
+        if ($request->filled('year')) {
+            $query->whereYear('created_at', $request->year);
+        }
+        
+        // Paginate results
+        $pdfs = $query->orderBy('created_at', 'desc')->paginate(10);
+        
+        return view('produk-hukum', compact('pdfs'));
     }
 
-    // List PDF per kategori
-    public function list($kategori)
+    public function dokumenEvaluasi(Request $request)
     {
-        $pdfs = Pdf::where('kategori', $kategori)->get();
-        return view('pdf-list', compact('pdfs', 'kategori'));
+        $query = Pdf::query();
+        
+        // Search functionality
+        if ($request->filled('search')) {
+            $query->where('nama_file', 'like', '%' . $request->search . '%');
+        }
+        
+        // Year filter
+        if ($request->filled('year')) {
+            $query->whereYear('created_at', $request->year);
+        }
+        
+        // Filter for evaluation documents (you can add a category column or filter by name pattern)
+        // For now, we'll show all PDFs - you can modify this based on your needs
+        
+        // Paginate results
+        $documents = $query->orderBy('created_at', 'desc')->paginate(10);
+        
+        return view('dokumen-evaluasi', compact('documents'));
     }
 
-    // Download PDF
+    public function dokumenPerencanaan(Request $request)
+    {
+        $query = Pdf::query();
+        
+        // Search functionality
+        if ($request->filled('search')) {
+            $query->where('nama_file', 'like', '%' . $request->search . '%');
+        }
+        
+        // Year filter
+        if ($request->filled('year')) {
+            $query->whereYear('created_at', $request->year);
+        }
+        
+        // Filter for planning documents (you can add a category column or filter by name pattern)
+        // For now, we'll show all PDFs - you can modify this based on your needs
+        
+        // Paginate results
+        $documents = $query->orderBy('created_at', 'desc')->paginate(10);
+        
+        return view('dokumen-perencanaan', compact('documents'));
+    }
+
     public function download($id)
     {
-        $pdf = Pdf::findOrFail($id);
-        $path = public_path($pdf->path);
-
-        if (!file_exists($path)) {
-            abort(404, 'PDF tidak ditemukan');
+        try {
+            $pdf = Pdf::findOrFail($id);
+            
+            // Try multiple path formats to ensure compatibility
+            $possiblePaths = [
+                public_path($pdf->path),
+                public_path('storage/' . $pdf->path),
+                storage_path('app/public/' . $pdf->path),
+                $pdf->path
+            ];
+            
+            $filePath = null;
+            foreach ($possiblePaths as $path) {
+                if (file_exists($path)) {
+                    $filePath = $path;
+                    break;
+                }
+            }
+            
+            if ($filePath && file_exists($filePath)) {
+                // Get the original filename or use nama_file field
+                $downloadName = $pdf->nama_file ?? basename($filePath);
+                
+                // Make sure the filename has .pdf extension
+                if (!str_ends_with(strtolower($downloadName), '.pdf')) {
+                    $downloadName .= '.pdf';
+                }
+                
+                return response()->download($filePath, $downloadName, [
+                    'Content-Type' => 'application/pdf',
+                ]);
+            }
+            
+            return redirect()->back()->with('error', 'File tidak ditemukan! Path: ' . $pdf->path);
+            
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Terjadi kesalahan saat mengunduh file: ' . $e->getMessage());
         }
-
-        return Response::download($path, $pdf->nama_file);
     }
 }
-
