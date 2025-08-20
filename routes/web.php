@@ -6,6 +6,13 @@ use App\Http\Controllers\ProfilPimpinanController;
 use App\Http\Controllers\LayananController;
 use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\ArtikelController;
+use App\Http\Controllers\PdfController;
+
+Route::post('/upload-pdf', [PdfController::class, 'upload'])->name('pdf.upload');
+Route::get('/pdf/{kategori}', [PdfController::class, 'list'])->name('pdf.list');
+Route::get('/pdf/view/{nama}', [PdfController::class, 'show'])->name('pdf.show');
+Route::get('/pdf/download/{id}', [PdfController::class, 'download'])->name('pdf.download');
+
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
 
@@ -54,4 +61,13 @@ Route::post('/admin/logout', [AdminController::class, 'logout'])->name('admin.lo
 // Route untuk dashboard admin (hanya untuk admin yang sudah login)
 Route::middleware('auth:admin')->group(function () {
     Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+    
 });
+
+// Route untuk halaman admin produk hukum
+Route::get('/admin/produkhukum', [\App\Http\Controllers\Admin\PdfController::class, 'index'])->name('admin-produkhukum');
+Route::post('/pdf/upload', [\App\Http\Controllers\Admin\PdfController::class, 'upload'])->name('pdf.upload');
+Route::get('/admin/pdfs', [\App\Http\Controllers\Admin\PdfController::class, 'index'])->name('admin.pdfs.index');
+Route::get('/admin', [\App\Http\Controllers\Admin\PdfController::class, 'index']);
+Route::delete('/admin/pdf/{id}', [App\Http\Controllers\Admin\PdfController::class, 'delete'])->name('pdf.delete');
+Route::put('/admin/pdf/{id}', [App\Http\Controllers\Admin\PdfController::class, 'update'])->name('pdf.update');
