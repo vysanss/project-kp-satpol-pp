@@ -55,7 +55,7 @@
                                     <ul class="text-gray-700 text-sm space-y-2 w-full">
                                         <li class="flex items-center gap-2">
                                             <span class="font-semibold">Telepon:</span>
-                                            <span>(0265) 331891</span>
+                                            <span>0821-1941-1145</span>
                                         </li>
                                         <li class="flex items-center gap-2">
                                             <span class="font-semibold">Email:</span>
@@ -70,34 +70,6 @@
                                         Kirim Email
                                     </a>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </main>
-    </div>
-    <x-footer />
-    
-    <script>
-        // Auto scroll to top on page load/refresh
-        window.addEventListener('load', function() {
-            window.scrollTo(0, 0);
-        });
-        
-        // Scroll to top before page unload (for refresh)
-        window.addEventListener('beforeunload', function() {
-            window.scrollTo(0, 0);
-        });
-        
-        // Force scroll to top immediately
-        if (history.scrollRestoration) {
-            history.scrollRestoration = 'manual';
-        }
-        window.scrollTo(0, 0);
-    </script>
-</body>
-</html>
                             </div>
                         </div>
                     </div>
