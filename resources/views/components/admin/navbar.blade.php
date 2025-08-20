@@ -70,16 +70,10 @@
                                     Artikel
                                 </a>
                                 <a href="{{ route('admin-produkhukum') }}" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-                                    <i class="fas fa-gavel mr-3 text-red-500"></i>
-                                    Produk Hukum
-                                </a>
-                                <a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-                                    <i class="fas fa-clipboard-check mr-3 text-purple-500"></i>
-                                    Dokumen Evaluasi
-                                </a>
-                                <a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
                                     <i class="fas fa-file-contract mr-3 text-orange-500"></i>
-                                    Dokumen Perencanaan
+                                    Dokumen
+                                </a>
+
                                 </a>
                             </div>
                         </div>

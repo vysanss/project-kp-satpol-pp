@@ -17,113 +17,124 @@
 
     <!-- Main Content -->
     <div class="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
-        <!-- Welcome Section -->
-        <div class="bg-white rounded-lg shadow-md p-6 mb-8">
-            <div class="flex items-center">
-                <div class="flex-shrink-0">
-                    <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
-                        <i class="fas fa-user-shield text-blue-600 text-xl"></i>
-                    </div>
+        <!-- Welcome Card -->
+        <div class="bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl shadow-xl p-8 text-white mb-8">
+            <div class="flex items-center justify-between">
+                <div>
+                    <h2 class="text-3xl font-bold mb-2">Admin Dashboard</h2>
+                    <p class="text-blue-100 text-lg">Akses cepat ke semua fitur administrasi</p>
                 </div>
-                <div class="ml-4">
-                    <h2 class="text-2xl font-bold text-gray-900">Selamat Datang di Dashboard Admin</h2>
-                    <p class="text-gray-600">Kelola sistem dengan mudah melalui panel administrasi ini</p>
+                <div class="hidden md:block">
+                    <div class="w-20 h-20 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center">
+                        <i class="fas fa-tachometer-alt text-3xl"></i>
+                    </div>
                 </div>
             </div>
         </div>
         
-        <!-- Stats Cards -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-            <div class="bg-white rounded-lg shadow-md p-6">
+        <!-- Navigation Shortcuts -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+            <!-- Users Management -->
+            <a href="/admin/users" class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow duration-300">
                 <div class="flex items-center">
                     <div class="p-3 bg-blue-100 rounded-full">
                         <i class="fas fa-users text-blue-600 text-xl"></i>
                     </div>
                     <div class="ml-4">
-                        <h3 class="text-lg font-semibold text-gray-900">Total Users</h3>
-                        <p class="text-2xl font-bold text-blue-600">1,234</p>
+                        <h3 class="text-lg font-semibold text-gray-900">Kelola Pengguna</h3>
+                        <p class="text-sm text-gray-500">Manajemen user dan hak akses</p>
                     </div>
                 </div>
-            </div>
+            </a>
             
-            <div class="bg-white rounded-lg shadow-md p-6">
+            <!-- Documents Management -->
+            <a href="/admin/documents" class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow duration-300">
                 <div class="flex items-center">
                     <div class="p-3 bg-green-100 rounded-full">
-                        <i class="fas fa-chart-line text-green-600 text-xl"></i>
+                        <i class="fas fa-file-alt text-green-600 text-xl"></i>
                     </div>
                     <div class="ml-4">
-                        <h3 class="text-lg font-semibold text-gray-900">Aktivitas</h3>
-                        <p class="text-2xl font-bold text-green-600">856</p>
+                        <h3 class="text-lg font-semibold text-gray-900">Kelola Dokumen</h3>
+                        <p class="text-sm text-gray-500">Upload dan edit dokumen</p>
                     </div>
                 </div>
-            </div>
+            </a>
             
-            <div class="bg-white rounded-lg shadow-md p-6">
-                <div class="flex items-center">
-                    <div class="p-3 bg-yellow-100 rounded-full">
-                        <i class="fas fa-bell text-yellow-600 text-xl"></i>
-                    </div>
-                    <div class="ml-4">
-                        <h3 class="text-lg font-semibold text-gray-900">Notifikasi</h3>
-                        <p class="text-2xl font-bold text-yellow-600">23</p>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="bg-white rounded-lg shadow-md p-6">
+            <!-- Categories Management -->
+            <a href="/admin/categories" class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow duration-300">
                 <div class="flex items-center">
                     <div class="p-3 bg-purple-100 rounded-full">
-                        <i class="fas fa-tasks text-purple-600 text-xl"></i>
+                        <i class="fas fa-tags text-purple-600 text-xl"></i>
                     </div>
                     <div class="ml-4">
-                        <h3 class="text-lg font-semibold text-gray-900">Tasks</h3>
-                        <p class="text-2xl font-bold text-purple-600">45</p>
+                        <h3 class="text-lg font-semibold text-gray-900">Kategori</h3>
+                        <p class="text-sm text-gray-500">Kelola kategori dokumen</p>
                     </div>
                 </div>
-            </div>
+            </a>
+            
+            <!-- Reports -->
+            <a href="/admin/reports" class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow duration-300">
+                <div class="flex items-center">
+                    <div class="p-3 bg-yellow-100 rounded-full">
+                        <i class="fas fa-chart-bar text-yellow-600 text-xl"></i>
+                    </div>
+                    <div class="ml-4">
+                        <h3 class="text-lg font-semibold text-gray-900">Laporan</h3>
+                        <p class="text-sm text-gray-500">Analisis dan statistik</p>
+                    </div>
+                </div>
+            </a>
+            
+            <!-- Settings -->
+            <a href="/admin/settings" class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow duration-300">
+                <div class="flex items-center">
+                    <div class="p-3 bg-red-100 rounded-full">
+                        <i class="fas fa-cog text-red-600 text-xl"></i>
+                    </div>
+                    <div class="ml-4">
+                        <h3 class="text-lg font-semibold text-gray-900">Pengaturan</h3>
+                        <p class="text-sm text-gray-500">Konfigurasi sistem</p>
+                    </div>
+                </div>
+            </a>
+            
+            <!-- Backup & Security -->
+            <a href="/admin/backup" class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow duration-300">
+                <div class="flex items-center">
+                    <div class="p-3 bg-indigo-100 rounded-full">
+                        <i class="fas fa-shield-alt text-indigo-600 text-xl"></i>
+                    </div>
+                    <div class="ml-4">
+                        <h3 class="text-lg font-semibold text-gray-900">Backup & Keamanan</h3>
+                        <p class="text-sm text-gray-500">Backup data dan keamanan</p>
+                    </div>
+                </div>
+            </a>
         </div>
         
-        <!-- Recent Activity -->
+        <!-- Quick Stats -->
         <div class="bg-white rounded-lg shadow-md p-6">
             <h3 class="text-lg font-semibold text-gray-900 mb-4">
-                <i class="fas fa-clock mr-2 text-blue-600"></i>
-                Aktivitas Terbaru
+                <i class="fas fa-chart-line mr-2 text-blue-600"></i>
+                Statistik Cepat
             </h3>
-            <div class="space-y-4">
-                <div class="flex items-center p-3 bg-gray-50 rounded-lg">
-                    <div class="flex-shrink-0">
-                        <div class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
-                            <i class="fas fa-user-plus text-green-600 text-sm"></i>
-                        </div>
-                    </div>
-                    <div class="ml-3">
-                        <p class="text-sm font-medium text-gray-900">User baru terdaftar</p>
-                        <p class="text-sm text-gray-500">2 menit yang lalu</p>
-                    </div>
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                <div class="text-center p-4 bg-blue-50 rounded-lg">
+                    <div class="text-2xl font-bold text-blue-600">156</div>
+                    <div class="text-sm text-gray-600">Total Dokumen</div>
                 </div>
-                
-                <div class="flex items-center p-3 bg-gray-50 rounded-lg">
-                    <div class="flex-shrink-0">
-                        <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
-                            <i class="fas fa-edit text-blue-600 text-sm"></i>
-                        </div>
-                    </div>
-                    <div class="ml-3">
-                        <p class="text-sm font-medium text-gray-900">Data system diperbarui</p>
-                        <p class="text-sm text-gray-500">5 menit yang lalu</p>
-                    </div>
+                <div class="text-center p-4 bg-green-50 rounded-lg">
+                    <div class="text-2xl font-bold text-green-600">89</div>
+                    <div class="text-sm text-gray-600">Pengguna Aktif</div>
                 </div>
-                
-                <div class="flex items-center p-3 bg-gray-50 rounded-lg">
-                    <div class="flex-shrink-0">
-                        <div class="w-8 h-8 bg-yellow-100 rounded-full flex items-center justify-center">
-                            <i class="fas fa-exclamation-triangle text-yellow-600 text-sm"></i>
-                        </div>
-                    </div>
-                    <div class="ml-3">
-                        <p class="text-sm font-medium text-gray-900">Peringatan sistem</p>
-                        <p class="text-sm text-gray-500">10 menit yang lalu</p>
-                    </div>
+                <div class="text-center p-4 bg-yellow-50 rounded-lg">
+                    <div class="text-2xl font-bold text-yellow-600">12</div>
+                    <div class="text-sm text-gray-600">Pending Review</div>
+                </div>
+                <div class="text-center p-4 bg-purple-50 rounded-lg">
+                    <div class="text-2xl font-bold text-purple-600">7</div>
+                    <div class="text-sm text-gray-600">Kategori</div>
                 </div>
             </div>
         </div>
