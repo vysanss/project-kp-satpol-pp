@@ -144,58 +144,59 @@
                                     </tr>
                                 </thead>
                                 <tbody class="bg-white divide-y divide-gray-200">
-                                    @foreach($pdfs as $index => $pdf)
-                                    @if($pdf->kategori === 'produk_hukum')
-                                    <tr class="hover:bg-gray-50 transition-colors duration-200">
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                                            {{ $pdfs->firstItem() + $index }}
-                                        </td>
-                                        <td class="px-6 py-4">
-                                            <div class="flex items-center">
-                                                <div class="flex-shrink-0 mr-3">
-                                                    <div class="w-8 h-8 bg-red-100 rounded-lg flex items-center justify-center">
-                                                        <svg class="w-5 h-5 text-red-600" fill="currentColor" viewBox="0 0 20 20">
-                                                            <path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z" clip-rule="evenodd"/>
-                                                        </svg>
+                                    @php $no = 1; @endphp
+                                    @foreach($pdfs as $pdf)
+                                        @if($pdf->kategori === 'produk_hukum')
+                                        <tr class="hover:bg-gray-50 transition-colors duration-200">
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                                                {{ $no++ }}
+                                            </td>
+                                            <td class="px-6 py-4">
+                                                <div class="flex items-center">
+                                                    <div class="flex-shrink-0 mr-3">
+                                                        <div class="w-8 h-8 bg-red-100 rounded-lg flex items-center justify-center">
+                                                            <svg class="w-5 h-5 text-red-600" fill="currentColor" viewBox="0 0 20 20">
+                                                                <path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z" clip-rule="evenodd"/>
+                                                            </svg>
+                                                        </div>
+                                                    </div>
+                                                    <div>
+                                                        <div class="text-sm font-medium text-gray-900">{{ $pdf->nama_file }}</div>
+                                                        <div class="text-sm text-gray-500">Produk Hukum</div>
                                                     </div>
                                                 </div>
-                                                <div>
-                                                    <div class="text-sm font-medium text-gray-900">{{ $pdf->nama_file }}</div>
-                                                    <div class="text-sm text-gray-500">Produk Hukum</div>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
-                                                {{ date('Y', strtotime($pdf->created_at)) }}
-                                            </span>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                            @if($pdf->path && file_exists(public_path($pdf->path)))
-                                                {{ number_format(filesize(public_path($pdf->path)) / 1024, 0) }} KB
-                                            @else
-                                                N/A
-                                            @endif
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <div class="flex space-x-2">
-                                                @if($pdf->path)
-                                                    <a href="{{ route('pdf.download', $pdf->id) }}" 
-                                                       class="inline-flex items-center px-3 py-1.5 border border-gray-300 text-xs font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors duration-200">
-                                                        <svg class="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2M7 10l5 5 5-5M12 15V3"/>
-                                                        </svg>
-                                                        Unduh
-                                                    </a>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                                                    {{ date('Y', strtotime($pdf->created_at)) }}
+                                                </span>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                                @if($pdf->path && file_exists(public_path($pdf->path)))
+                                                    {{ number_format(filesize(public_path($pdf->path)) / 1024, 0) }} KB
                                                 @else
-                                                    <span class="inline-flex items-center px-3 py-1.5 text-xs font-medium text-gray-400">
-                                                        File tidak tersedia
-                                                    </span>
+                                                    N/A
                                                 @endif
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    @endif
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <div class="flex space-x-2">
+                                                    @if($pdf->path)
+                                                        <a href="{{ route('pdf.download', $pdf->id) }}" 
+                                                           class="inline-flex items-center px-3 py-1.5 border border-gray-300 text-xs font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors duration-200">
+                                                            <svg class="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2M7 10l5 5 5-5M12 15V3"/>
+                                                            </svg>
+                                                            Unduh
+                                                        </a>
+                                                    @else
+                                                        <span class="inline-flex items-center px-3 py-1.5 text-xs font-medium text-gray-400">
+                                                            File tidak tersedia
+                                                        </span>
+                                                    @endif
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        @endif
                                     @endforeach
                                 </tbody>
                             </table>

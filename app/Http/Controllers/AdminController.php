@@ -27,7 +27,8 @@ class AdminController extends Controller
 
     public function dashboard()
     {
-        return view('admin.dashboard');
+        $admin = Auth::guard('admin')->user();
+        return view('admin.dashboard', compact('admin'));
     }
 
     public function logout(Request $request)
@@ -42,6 +43,7 @@ class AdminController extends Controller
     
     public function produkHukum()
     {
-        return view('admin.admin-produkhukum');
+        $admin = Auth::guard('admin')->user();
+        return view('admin.admin-produkhukum', compact('admin'));
     }
 }

@@ -42,7 +42,7 @@
                     </div>
                     <div class="ml-4">
                         <h3 class="text-lg font-semibold text-gray-900">Kelola Banner</h3>
-                        <p class="text-sm text-gray-500">Manajemen user dan hak akses</p>
+                        <p class="text-sm text-gray-500">Manajemen banner</p>
                     </div>
                 </div>
             </a>

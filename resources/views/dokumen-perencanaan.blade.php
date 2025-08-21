@@ -116,11 +116,12 @@
                                     </tr>
                                 </thead>
                                 <tbody class="bg-white divide-y divide-gray-200">
-                                    @foreach($documents as $index => $document)
+                                    @php $no = 1; @endphp
+                                    @foreach($documents as $document)
                                         @if($document->kategori == 'dokumen_perencanaan')
                                         <tr class="hover:bg-gray-50 transition-colors duration-200">
                                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                                                {{ $documents->firstItem() + $index }}
+                                                {{ $no++ }}
                                             </td>
                                             <td class="px-6 py-4">
                                                 <div class="flex items-center">

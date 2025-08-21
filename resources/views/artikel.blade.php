@@ -227,32 +227,4 @@
     </style>
 </body>
 </html>
-        .filter-tab:hover {
-            background-color: #d1d5db;
-            color: #222;
-        }
-        .filter-tab.active {
-            background-color: #0D0D8C;
-            color: #fff;
-        }
-        .filter-tab.active:hover {
-            background-color: #2020a9;
-            color: #fff;
-        }
 
-        .line-clamp-2 {
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-        }
-
-        .line-clamp-3 {
-            display: -webkit-box;
-            -webkit-line-clamp: 3;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-        }
-    </style>
-</body>
-</html>

@@ -25,7 +25,7 @@ class BannerController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'judul' => 'required|string|max:255',
-            'sub_judul' => 'required|string|max:255',
+            'sub_judul' => 'nullable|string|max:255',
             'deskripsi' => 'nullable|string|max:1000',
             'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
             'logo_alt' => 'nullable|string|max:255',
@@ -95,7 +95,7 @@ class BannerController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'judul' => 'required|string|max:255',
-            'sub_judul' => 'required|string|max:255',
+            'sub_judul' => 'nullable|string|max:255',
             'deskripsi' => 'nullable|string|max:1000',
             'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
             'logo_alt' => 'nullable|string|max:255',

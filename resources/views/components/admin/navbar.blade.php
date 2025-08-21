@@ -6,8 +6,8 @@
                 <div class="flex items-center">
                     <h1 class="text-lg sm:text-xl font-bold text-gray-800">
                         <i class="fas fa-cog mr-2 text-blue-600"></i>
-                        <span class="hidden sm:inline">Admin Panel</span>
-                        <span class="sm:hidden">Admin</span>
+                        <span class="hidden sm:inline">{{ $admin->name ?? Auth::guard('admin')->user()->name ?? '' }}</span>
+                        <span class="sm:hidden">{{ $admin->name ?? Auth::guard('admin')->user()->name ?? 'Admin' }}</span>
                     </h1>
                 </div>
                 
