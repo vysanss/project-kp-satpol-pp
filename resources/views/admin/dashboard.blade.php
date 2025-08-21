@@ -48,7 +48,7 @@
             </a>
             
             <!-- Documents Management -->
-            <a href="{{ route('admin-produkhukum') }}" class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow duration-300">
+            <a href="{{ route('admin-dokumen') }}" class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow duration-300">
                 <div class="flex items-center">
                     <div class="p-3 bg-green-100 rounded-full">
                         <i class="fas fa-file-alt text-green-600 text-xl"></i>
