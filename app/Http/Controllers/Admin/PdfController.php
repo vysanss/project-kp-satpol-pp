@@ -11,7 +11,7 @@ class PdfController extends Controller
     public function index()
     {
         $pdfs = \App\Models\Pdf::all();
-        return view('admin.admin-produkhukum', compact('pdfs'));
+        return view('admin.admin-dokumen', compact('pdfs'));
     }
 
     public function upload(Request $request)
@@ -38,9 +38,9 @@ class PdfController extends Controller
                 'kategori' => $request->kategori
             ]);
 
-            return redirect()->route('admin-produkhukum')->with('success', 'PDF berhasil diupload!');
+            return redirect()->route('admin-dokumen')->with('success', 'PDF berhasil diupload!');
         } catch (\Exception $e) {
-            return redirect()->route('admin-produkhukum')->with('error', 'PDF gagal diupload!');
+            return redirect()->route('admin-dokumen')->with('error', 'PDF gagal diupload!');
         }
     }
 
@@ -58,9 +58,9 @@ class PdfController extends Controller
             // Delete record from database
             $pdf->delete();
             
-            return redirect()->route('admin-produkhukum')->with('success', 'PDF berhasil dihapus!');
+            return redirect()->route('admin-dokumen')->with('success', 'PDF berhasil dihapus!');
         } catch (\Exception $e) {
-            return redirect()->route('admin-produkhukum')->with('error', 'PDF gagal dihapus!');
+            return redirect()->route('admin-dokumen')->with('error', 'PDF gagal dihapus!');
         }
     }
 
@@ -78,9 +78,9 @@ class PdfController extends Controller
                 'kategori' => $request->kategori
             ]);
 
-            return redirect()->route('admin-produkhukum')->with('success', 'PDF berhasil diupdate!');
+            return redirect()->route('admin-dokumen')->with('success', 'PDF berhasil diupdate!');
         } catch (\Exception $e) {
-            return redirect()->route('admin-produkhukum')->with('error', 'PDF gagal diupdate!');
+            return redirect()->route('admin-dokumen')->with('error', 'PDF gagal diupdate!');
         }
     }
 }

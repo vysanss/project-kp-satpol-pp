@@ -56,10 +56,12 @@ Route::middleware('auth:admin')->group(function () {
     
 });
 
-// Route untuk halaman admin produk hukum
-Route::get('/admin/produkhukum', [\App\Http\Controllers\Admin\PdfController::class, 'index'])->name('admin-produkhukum');
+// Route untuk halaman admin dokumen
+Route::get('/admin/dokumen', [\App\Http\Controllers\Admin\PdfController::class, 'index'])->name('admin-dokumen');
 Route::post('/pdf/upload', [\App\Http\Controllers\Admin\PdfController::class, 'upload'])->name('pdf.upload');
 Route::get('/admin/pdfs', [\App\Http\Controllers\Admin\PdfController::class, 'index'])->name('admin.pdfs.index');
-Route::get('/admin', [\App\Http\Controllers\Admin\PdfController::class, 'index']);
+Route::get('/admin', function () {
+    return redirect()->route('admin.login');
+});
 Route::delete('/admin/pdf/{id}', [App\Http\Controllers\Admin\PdfController::class, 'delete'])->name('pdf.delete');
-Route::put('/admin/pdf/{id}', [App\Http\Controllers\Admin\PdfController::class, 'update'])->name('pdf.update');Route::delete('/admin/pdf/{id}', [App\Http\Controllers\Admin\PdfController::class, 'delete'])->name('pdf.delete');Route::put('/admin/pdf/{id}', [App\Http\Controllers\Admin\PdfController::class, 'update'])->name('pdf.update');
+Route::put('/admin/pdf/{id}', [App\Http\Controllers\Admin\PdfController::class, 'update'])->name('pdf.update');

@@ -69,7 +69,7 @@
                                     <i class="fas fa-edit mr-3 text-green-500"></i>
                                     Artikel
                                 </a>
-                                <a href="{{ route('admin-produkhukum') }}" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                                <a href="{{ route('admin-dokumen') }}" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
                                     <i class="fas fa-file-contract mr-3 text-orange-500"></i>
                                     Dokumen
                                 </a>
@@ -175,7 +175,7 @@
                                 <i class="fas fa-edit mr-3 text-green-500"></i>
                                 Artikel
                             </a>
-                            <a href="{{ route('admin-produkhukum') }}" class="flex items-center px-3 py-2 text-sm text-gray-600 hover:bg-gray-50 rounded-md">
+                            <a href="{{ route('admin-dokumen') }}" class="flex items-center px-3 py-2 text-sm text-gray-600 hover:bg-gray-50 rounded-md">
                                 <i class="fas fa-gavel mr-3 text-red-500"></i>
                                 Produk Hukum
                             </a>
