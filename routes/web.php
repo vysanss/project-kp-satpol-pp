@@ -4,9 +4,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProfilPimpinanController;
 use App\Http\Controllers\LayananController;
-use App\Http\Controllers\BeritaController;
+use App\Http\Controllers\BeritaController; // Untuk frontend
 use App\Http\Controllers\ArtikelController;
 use App\Http\Controllers\PdfController;
+use App\Http\Controllers\Admin\BeritaController as AdminBeritaController; // Untuk admin
 
 
 
@@ -73,3 +74,10 @@ Route::prefix('admin')->name('admin.')->middleware(['auth:admin'])->group(functi
 });
 
 Route::get('/admin/banner', [App\Http\Controllers\Admin\BannerController::class, 'index'])->name('admin-banner')->middleware('auth:admin');
+
+Route::prefix('admin')->middleware(['auth:admin'])->group(function () {
+    Route::resource('berita', AdminBeritaController::class)->except(['show', 'create', 'edit']);
+});
+
+// Tambahkan route berikut untuk admin-berita
+Route::get('/admin/berita', [AdminBeritaController::class, 'index'])->name('admin-berita')->middleware('auth:admin');

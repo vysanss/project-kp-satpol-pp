@@ -61,14 +61,14 @@
             </a>
             
             <!-- Categories Management -->
-            <a href="/admin/categories" class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow duration-300">
+            <a href="{{ route('admin-berita') }}" class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow duration-300">
                 <div class="flex items-center">
                     <div class="p-3 bg-purple-100 rounded-full">
-                        <i class="fas fa-tags text-purple-600 text-xl"></i>
+                        <i class="fas fa-newspaper text-purple-600 text-xl"></i>
                     </div>
                     <div class="ml-4">
-                        <h3 class="text-lg font-semibold text-gray-900">Kategori</h3>
-                        <p class="text-sm text-gray-500">Kelola kategori dokumen</p>
+                        <h3 class="text-lg font-semibold text-gray-900">Berita</h3>
+                        <p class="text-sm text-gray-500">Kelola berita</p>
                     </div>
                 </div>
             </a>
