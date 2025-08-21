@@ -35,13 +35,13 @@
         <!-- Navigation Shortcuts -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
             <!-- Users Management -->
-            <a href="/admin/users" class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow duration-300">
+            <a href="{{ route('admin-banner') }}" class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow duration-300">
                 <div class="flex items-center">
                     <div class="p-3 bg-blue-100 rounded-full">
                         <i class="fas fa-users text-blue-600 text-xl"></i>
                     </div>
                     <div class="ml-4">
-                        <h3 class="text-lg font-semibold text-gray-900">Kelola Pengguna</h3>
+                        <h3 class="text-lg font-semibold text-gray-900">Kelola Banner</h3>
                         <p class="text-sm text-gray-500">Manajemen user dan hak akses</p>
                     </div>
                 </div>

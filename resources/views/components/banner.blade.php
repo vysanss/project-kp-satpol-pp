@@ -98,6 +98,21 @@
             ];
         }
     }
+    
+    // Handle logo path - determine if it's uploaded or default
+    $logoPath = '';
+    if ($bannerData->logo) {
+        if ($bannerData->logo === 'logo-Pol-PP-png.webp' || strpos($bannerData->logo, 'img/') === 0) {
+            // Default logo or already has img/ prefix
+            $logoPath = asset($bannerData->logo);
+        } else {
+            // Uploaded logo - use storage path
+            $logoPath = asset('storage/logos/' . $bannerData->logo);
+        }
+    } else {
+        // Fallback to default logo
+        $logoPath = asset('img/logo-Pol-PP-png.webp');
+    }
 @endphp
 
 <!-- Hero Banner Satpol PP Tasikmalaya -->
@@ -121,7 +136,7 @@
       @if($bannerData->show_logo)
       <!-- Logo -->
       <div class="mb-3 sm:mb-4 flex justify-center">
-        <img src="{{ asset($bannerData->logo) }}" alt="{{ $bannerData->logo_alt }}" class="h-12 w-12 sm:h-16 sm:w-16 lg:h-20 lg:w-20 object-contain">
+        <img src="{{ $logoPath }}" alt="{{ $bannerData->logo_alt ?? 'Logo Satpol PP Tasikmalaya' }}" class="h-12 w-12 sm:h-16 sm:w-16 lg:h-20 lg:w-20 object-contain">
       </div>
       @endif
       <!-- Main Title -->

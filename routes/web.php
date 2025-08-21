@@ -65,3 +65,11 @@ Route::get('/admin', function () {
 });
 Route::delete('/admin/pdf/{id}', [App\Http\Controllers\Admin\PdfController::class, 'delete'])->name('pdf.delete');
 Route::put('/admin/pdf/{id}', [App\Http\Controllers\Admin\PdfController::class, 'update'])->name('pdf.update');
+
+// Admin Banner Routes
+Route::prefix('admin')->name('admin.')->middleware(['auth:admin'])->group(function () {
+    Route::resource('banners', App\Http\Controllers\Admin\BannerController::class);
+    Route::get('banners/{banner}/toggle-status', [App\Http\Controllers\Admin\BannerController::class, 'toggleStatus'])->name('banners.toggle-status');
+});
+
+Route::get('/admin/banner', [App\Http\Controllers\Admin\BannerController::class, 'index'])->name('admin-banner')->middleware('auth:admin');

@@ -18,8 +18,11 @@ class Banner extends Model
         'show_logo',
         'show_navigation',
         'show_stats',
+        'tahun_melayani',
+        'personil_aktif',
+        'kecamatan',
+        'kelurahan',
         'navigation_items',
-        'stats',
         'is_active'
     ];
 
@@ -28,12 +31,18 @@ class Banner extends Model
         'show_navigation' => 'boolean',
         'show_stats' => 'boolean',
         'navigation_items' => 'array',
-        'stats' => 'array',
         'is_active' => 'boolean'
     ];
 
+    // Scope untuk banner aktif
     public function scopeActive($query)
     {
         return $query->where('is_active', true);
+    }
+
+    // Accessor untuk URL logo lengkap
+    public function getLogoUrlAttribute()
+    {
+        return $this->logo ? asset($this->logo) : null;
     }
 }
