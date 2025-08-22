@@ -10,6 +10,7 @@
     <title>Dashboard - Admin</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="//unpkg.com/alpinejs" defer></script>
 </head>
 <body class="bg-gray-100 pt-20">
 
@@ -73,18 +74,40 @@
                 </div>
             </a>
             
-            <!-- Reports -->
-            <a href="/admin/reports" class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow duration-300">
-                <div class="flex items-center">
+            <!-- Reports (Profil) with dropdown -->
+            <div x-data="{ open: false }" class="relative">
+                <button @click="open = !open" class="w-full text-left bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow duration-300 flex items-center">
                     <div class="p-3 bg-yellow-100 rounded-full">
                         <i class="fas fa-chart-bar text-yellow-600 text-xl"></i>
                     </div>
                     <div class="ml-4">
-                        <h3 class="text-lg font-semibold text-gray-900">Laporan</h3>
-                        <p class="text-sm text-gray-500">Analisis dan statistik</p>
+                        <h3 class="text-lg font-semibold text-gray-900">Profil</h3>
+                        <p class="text-sm text-gray-500">Edit halaman Profil</p>
                     </div>
+                    <div class="ml-auto">
+                        <i :class="open ? 'fa-chevron-up' : 'fa-chevron-down'" class="fas text-gray-400"></i>
+                    </div>
+                </button>
+                <div x-show="open" @click.away="open = false" x-transition class="absolute left-0 right-0 mt-2 bg-white rounded-lg shadow-lg z-10">
+                    <ul class="divide-y divide-gray-200">
+                        <li>
+                            <a href="{{ route('admin.tentangkami') }}" class="block px-6 py-3 hover:bg-yellow-50 text-gray-700">Tentang Kami</a>
+                        </li>
+                        <li>
+                            <a href="/admin/profil/struktur-organisasi" class="block px-6 py-3 hover:bg-yellow-50 text-gray-700">Struktur Organisasi</a>
+                        </li>
+                        <li>
+                            <a href="/admin/profil/tupoksi" class="block px-6 py-3 hover:bg-yellow-50 text-gray-700">Tupoksi</a>
+                        </li>
+                        <li>
+                            <a href="/admin/profil/maklumat-pelayanan" class="block px-6 py-3 hover:bg-yellow-50 text-gray-700">Maklumat Pelayanan</a>
+                        </li>
+                        <li>
+                            <a href="/admin/profil/pimpinan" class="block px-6 py-3 hover:bg-yellow-50 text-gray-700">Profil Pimpinan</a>
+                        </li>
+                    </ul>
                 </div>
-            </a>
+            </div>
             
             <!-- Settings -->
             <a href="/admin/settings" class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow duration-300">

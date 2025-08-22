@@ -85,3 +85,6 @@ Route::prefix('admin')->middleware(['auth:admin'])->group(function () {
 Route::get('/admin/berita', [AdminBeritaController::class, 'index'])->name('admin-berita')->middleware('auth:admin');
 // Add this route for CKEditor image upload
 Route::post('/admin/berita/upload-image', [App\Http\Controllers\Admin\BeritaController::class, 'uploadImage'])->name('berita.upload-image');
+Route::get('/admin/tentangkami', function () {
+    return view('admin.admin-tentangkami');
+})->name('admin.tentangkami');
