@@ -9,6 +9,8 @@ use App\Http\Controllers\ArtikelController;
 use App\Http\Controllers\PdfController;
 use App\Http\Controllers\Admin\BeritaController as AdminBeritaController; // Untuk admin
 use App\Http\Controllers\Admin\StrukturOrganisasiController as AdminStrukturOrganisasiController;
+use App\Http\Controllers\MPelayananController;
+use App\Http\Controllers\AdminMPelayananController;
 
 
 
@@ -23,9 +25,7 @@ Route::get('/strukturorganisasi', [\App\Http\Controllers\StrukturOrganisasiContr
 
 Route::get('/tupoksi', [\App\Http\Controllers\TupoksiController::class, 'index'])->name('tupoksi');
 
-Route::get('/maklumatpelayanan', function () {
-    return view('maklumatpelayanan');
-})->name('maklumatpelayanan');
+Route::get('/maklumatpelayanan', [MPelayananController::class, 'index'])->name('maklumatpelayanan');
 
 
 Route::get('/berita', [BeritaController::class, 'index'])->name('berita.index');
@@ -95,6 +95,10 @@ Route::prefix('admin')->middleware(['auth:admin'])->group(function () {
     Route::post('tupoksi', [\App\Http\Controllers\Admin\TupoksiController::class, 'store'])->name('admin.tupoksi.store');
     Route::put('tupoksi/{id}', [\App\Http\Controllers\Admin\TupoksiController::class, 'update'])->name('admin.tupoksi.update');
     Route::delete('tupoksi/{id}', [\App\Http\Controllers\Admin\TupoksiController::class, 'destroy'])->name('admin.tupoksi.destroy');
+    Route::get('pelayanan', [AdminMPelayananController::class, 'index'])->name('admin.pelayanan.index');
+    Route::post('pelayanan', [AdminMPelayananController::class, 'store'])->name('admin.pelayanan.store');
+    Route::put('pelayanan/{id}', [AdminMPelayananController::class, 'update'])->name('admin.pelayanan.update');
+    Route::delete('pelayanan/{id}', [AdminMPelayananController::class, 'destroy'])->name('admin.pelayanan.destroy');
 });
 
 // Tambahkan route berikut untuk admin-berita

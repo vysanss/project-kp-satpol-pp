@@ -100,7 +100,7 @@
                             <a href="{{ route('admin.tupoksi.index') }}" class="block px-6 py-3 hover:bg-yellow-50 text-gray-700">Tupoksi</a>
                         </li>
                         <li>
-                            <a href="/admin/profil/maklumat-pelayanan" class="block px-6 py-3 hover:bg-yellow-50 text-gray-700">Maklumat Pelayanan</a>
+                            <a href="{{ route('admin.pelayanan.index') }}" class="block px-6 py-3 hover:bg-yellow-50 text-gray-700">Maklumat Pelayanan</a>
                         </li>
                         <li>
                             <a href="/admin/profil/pimpinan" class="block px-6 py-3 hover:bg-yellow-50 text-gray-700">Profil Pimpinan</a>
