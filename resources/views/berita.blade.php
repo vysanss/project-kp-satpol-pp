@@ -130,7 +130,7 @@
                         @forelse($beritas as $berita)
                         <article class="news-card bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl hover:scale-105 transition-all duration-300 cursor-pointer group">
                             <div class="relative overflow-hidden">
-                                <img src="{{ $berita->image ? asset($berita->image) : asset('img/placeholder-news.jpg') }}" 
+                                <img src="{{ asset('storage/' . $berita->image) }}" 
                                      alt="{{ $berita->title }}" 
                                      class="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-300">
                                 <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>

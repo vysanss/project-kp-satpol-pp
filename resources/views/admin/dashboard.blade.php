@@ -67,8 +67,8 @@
                         <i class="fas fa-newspaper text-purple-600 text-xl"></i>
                     </div>
                     <div class="ml-4">
-                        <h3 class="text-lg font-semibold text-gray-900">Berita</h3>
-                        <p class="text-sm text-gray-500">Kelola berita</p>
+                        <h3 class="text-lg font-semibold text-gray-900">Berita & Artikel</h3>
+                        <p class="text-sm text-gray-500">Kelola berita dan artikel</p>
                     </div>
                 </div>
             </a>

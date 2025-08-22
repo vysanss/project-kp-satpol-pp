@@ -66,18 +66,16 @@
 
                         @if($berita->image)
                         <div class="mb-8 rounded-xl overflow-hidden shadow-lg">
-                            <img src="{{ asset($berita->image) }}" 
+                            <img src="{{ asset('storage/' . $berita->image) }}" 
                                  alt="{{ $berita->title }}" 
-                                 class="w-full h-64 md:h-96 object-cover">
+                                 class="w-full object-contain max-h-[600px]">
                         </div>
                         @endif
                     </header>
 
                     <!-- Article Body -->
                     <div class="prose prose-lg max-w-none">
-                        <div class="text-gray-700 leading-relaxed">
-                            {!! nl2br(e($berita->content)) !!}
-                        </div>
+                        {!! $berita->content !!}
                     </div>
 
                     <!-- Article Footer -->
@@ -132,5 +130,16 @@
             window.scrollTo(0, 0);
         });
     </script>
+
+    <style>
+        .prose img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 0.5rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+            margin-top: 1.2em;
+            margin-bottom: 1.2em;
+        }
+    </style>
 </body>
 </html>
