@@ -8,6 +8,7 @@ use App\Http\Controllers\BeritaController; // Untuk frontend
 use App\Http\Controllers\ArtikelController;
 use App\Http\Controllers\PdfController;
 use App\Http\Controllers\Admin\BeritaController as AdminBeritaController; // Untuk admin
+use App\Http\Controllers\Admin\StrukturOrganisasiController as AdminStrukturOrganisasiController;
 
 
 
@@ -18,9 +19,7 @@ Route::get('/tentangkami', [App\Http\Controllers\TentangKamiController::class, '
 
 Route::get('/profilpimpinan', [ProfilPimpinanController::class, 'index'])->name('profil.pimpinan');
 
-Route::get('/strukturorganisasi', function () {
-    return view('strukturorganisasi');
-})->name('strukturorganisasi');
+Route::get('/strukturorganisasi', [\App\Http\Controllers\StrukturOrganisasiController::class, 'index'])->name('strukturorganisasi');
 
 Route::get('/tupoksi', function () {
     return view('tupoksi');
@@ -79,12 +78,24 @@ Route::get('/admin/banner', [App\Http\Controllers\Admin\BannerController::class,
 
 Route::prefix('admin')->middleware(['auth:admin'])->group(function () {
     Route::resource('berita', AdminBeritaController::class)->except(['show', 'create', 'edit']);
+    Route::resource('tentangkami', \App\Http\Controllers\AdminTentangKamiController::class, [
+        'names' => [
+            'index' => 'admin.tentangkami.index',
+            'store' => 'admin.tentangkami.store',
+            'update' => 'admin.tentangkami.update',
+            'destroy' => 'admin.tentangkami.destroy',
+            'show' => 'admin.tentangkami.show',
+            'edit' => 'admin.tentangkami.edit',
+            'create' => 'admin.tentangkami.create',
+        ]
+    ]);
+    Route::get('strukturorganisasi', [AdminStrukturOrganisasiController::class, 'index'])->name('admin.strukturorganisasi.index');
+    Route::post('strukturorganisasi', [AdminStrukturOrganisasiController::class, 'store'])->name('admin.strukturorganisasi.store');
+    Route::put('strukturorganisasi/{id}', [AdminStrukturOrganisasiController::class, 'update'])->name('admin.strukturorganisasi.update');
+    Route::delete('strukturorganisasi/{id}', [AdminStrukturOrganisasiController::class, 'destroy'])->name('admin.strukturorganisasi.destroy');
 });
 
 // Tambahkan route berikut untuk admin-berita
 Route::get('/admin/berita', [AdminBeritaController::class, 'index'])->name('admin-berita')->middleware('auth:admin');
 // Add this route for CKEditor image upload
 Route::post('/admin/berita/upload-image', [App\Http\Controllers\Admin\BeritaController::class, 'uploadImage'])->name('berita.upload-image');
-Route::get('/admin/tentangkami', function () {
-    return view('admin.admin-tentangkami');
-})->name('admin.tentangkami');

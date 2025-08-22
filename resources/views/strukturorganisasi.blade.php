@@ -30,12 +30,26 @@
             :bannerId="3"
         />
         <main>
-            <section class="flex justify-center items-center py-4 px-4 sm:px-8">
-                <div class="w-full max-w-6xl rounded-xl shadow-lg p-8 sm:p-12">
-                    <p class="text-lg text-gray-700 leading-relaxed text-justify mb-8">
-                        Berikut adalah struktur organisasi Satpol PP Kota Tasikmalaya yang menggambarkan susunan dan peran masing-masing bagian dalam menjalankan tugas dan fungsi pelayanan kepada masyarakat.
-                    </p>
-                    <img src="/img/strukturorganisasi.webp" alt="Struktur Organisasi Satpol PP Kota Tasikmalaya" class="mx-auto w-full max-w-6xl">
+            <section class="flex justify-center items-center py-0 px-0">
+                <div class="w-full max-w-6xl rounded-xl shadow-lg p-0">
+                    {{-- Tampilkan deskripsi paling atas (ambil dari item pertama jika ada) --}}
+                    @if($items->count())
+                        <p class="text-lg text-gray-700 leading-relaxed text-justify mb-8 px-8 pt-8">
+                            {{ $items->first()->deskripsi }}
+                        </p>
+                    @endif
+
+                    <div class="flex flex-wrap gap-0 justify-center">
+                        @foreach($items as $item)
+                            @if($item->foto)
+                                <img src="{{ asset('storage/'.$item->foto) }}" alt="Foto" class="w-full object-cover mb-6">
+                            @else
+                                <div class="w-full flex items-center justify-center bg-gray-200 mb-6 text-gray-400 text-4xl" style="aspect-ratio: 2/1;">
+                                    Tidak ada foto
+                                </div>
+                            @endif
+                        @endforeach
+                    </div>
                 </div>
             </section>
         </main>

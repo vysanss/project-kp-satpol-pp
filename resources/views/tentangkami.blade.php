@@ -41,17 +41,18 @@
                             <div>
                                 <h2 class="text-3xl font-bold text-gray-900 mb-6">{{ $tentangkami->judul }}</h2>
                                 <p class="text-lg text-gray-700 leading-relaxed mb-4">
-                                    {{ $tentangkami->deskripsi_1 }}
+                                    {!! $tentangkami->deskripsi_1 !!}
                                 </p>
                                 @if($tentangkami->deskripsi_2)
+                                <br>
                                 <p class="text-lg text-gray-700 leading-relaxed">
-                                    {{ $tentangkami->deskripsi_2 }}
+                                    {!! $tentangkami->deskripsi_2 !!}
                                 </p>
                                 @endif
                             </div>
                             <div class="bg-gray-200 rounded-lg h-64 flex items-center justify-center">
                                 @if($tentangkami->gambar)
-                                    <img src="{{ asset($tentangkami->gambar) }}" alt="Gambar Kantor Satpol PP" class="object-cover h-full w-full rounded-lg" />
+                                    <img src="{{ asset('storage/' . $tentangkami->gambar) }}" alt="Gambar Kantor Satpol PP" class="object-cover h-full w-full rounded-lg" />
                                 @else
                                     <span class="text-gray-500">Gambar Kantor Satpol PP</span>
                                 @endif
@@ -61,7 +62,7 @@
 
                     <!-- Visi Misi -->
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
-                        <div class="bg-white rounded-xl shadow-lg p-8">
+                        <div class="bg-white rounded-xl shadow-lg p-8 flex flex-col items-center">
                             <div class="text-center mb-6">
                                 <div class="bg-blue-100 rounded-full p-4 w-16 h-16 mx-auto mb-4 flex items-center justify-center">
                                     <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -72,7 +73,7 @@
                                 <h3 class="text-2xl font-bold text-gray-900">Visi</h3>
                             </div>
                             <p class="text-gray-700 text-center leading-relaxed">
-                                "{{ $tentangkami->visi }}"
+                                {!! $tentangkami->visi !!}
                             </p>
                         </div>
 
@@ -86,7 +87,7 @@
                                 <h3 class="text-2xl font-bold text-gray-900">Misi</h3>
                             </div>
                             <p class="text-gray-700 text-center leading-relaxed">
-                                "{{ $tentangkami->misi }}"
+                                {!! $tentangkami->misi !!}
                             </p>
                         </div>
                     </div>

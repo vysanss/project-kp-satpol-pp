@@ -91,10 +91,10 @@
                 <div x-show="open" @click.away="open = false" x-transition class="absolute left-0 right-0 mt-2 bg-white rounded-lg shadow-lg z-10">
                     <ul class="divide-y divide-gray-200">
                         <li>
-                            <a href="{{ route('admin.tentangkami') }}" class="block px-6 py-3 hover:bg-yellow-50 text-gray-700">Tentang Kami</a>
+                            <a href="{{ route('admin.tentangkami.index') }}" class="block px-6 py-3 hover:bg-yellow-50 text-gray-700">Tentang Kami</a>
                         </li>
                         <li>
-                            <a href="/admin/profil/struktur-organisasi" class="block px-6 py-3 hover:bg-yellow-50 text-gray-700">Struktur Organisasi</a>
+                            <a href="{{ route('admin.strukturorganisasi.index') }}" class="block px-6 py-3 hover:bg-yellow-50 text-gray-700">Struktur Organisasi</a>
                         </li>
                         <li>
                             <a href="/admin/profil/tupoksi" class="block px-6 py-3 hover:bg-yellow-50 text-gray-700">Tupoksi</a>
