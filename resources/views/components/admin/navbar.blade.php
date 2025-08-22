@@ -5,7 +5,7 @@
             <!-- Logo/Brand -->
             <div class="flex items-center">
                 <h1 class="text-lg sm:text-xl font-bold text-gray-800">
-                    <i class="fas fa-cog mr-2 text-blue-600"></i>
+                    <i class="fas fa-user mr-2 text-blue-600"></i>
                     <span class="hidden sm:inline">{{ $admin->name ?? Auth::guard('admin')->user()->name ?? '' }}</span>
                     <span class="sm:hidden">{{ $admin->name ?? Auth::guard('admin')->user()->name ?? 'Admin' }}</span>
                 </h1>
@@ -64,10 +64,6 @@
                             <a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
                                 <i class="fas fa-newspaper mr-3 text-blue-500"></i>
                                 Berita
-                            </a>
-                            <a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-                                <i class="fas fa-edit mr-3 text-green-500"></i>
-                                Artikel
                             </a>
                             <a href="{{ route('admin-dokumen') }}" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
                                 <i class="fas fa-file-contract mr-3 text-orange-500"></i>

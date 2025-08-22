@@ -22,7 +22,7 @@
         <div class="bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl shadow-xl p-8 text-white mb-8">
             <div class="flex items-center justify-between">
                 <div>
-                    <h2 class="text-3xl font-bold mb-2">Admin Dashboard</h2>
+                    <h2 class="text-3xl font-bold mb-2">Dashboard</h2>
                     <p class="text-blue-100 text-lg">Akses cepat ke semua fitur administrasi</p>
                 </div>
                 <div class="hidden md:block">
@@ -39,7 +39,7 @@
             <a href="{{ route('admin-banner') }}" class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow duration-300">
                 <div class="flex items-center">
                     <div class="p-3 bg-blue-100 rounded-full">
-                        <i class="fas fa-users text-blue-600 text-xl"></i>
+                        <i class="fas fa-image text-blue-600 text-xl"></i> <!-- ganti fa-users menjadi fa-image -->
                     </div>
                     <div class="ml-4">
                         <h3 class="text-lg font-semibold text-gray-900">Kelola Banner</h3>
@@ -81,7 +81,7 @@
                         <i class="fas fa-chart-bar text-yellow-600 text-xl"></i>
                     </div>
                     <div class="ml-4">
-                        <h3 class="text-lg font-semibold text-gray-900">Profil</h3>
+                        <h3 class="text-lg font-semibold text-gray-900">Kelola Profil</h3>
                         <p class="text-sm text-gray-500">Edit halaman Profil</p>
                     </div>
                     <div class="ml-auto">
@@ -97,7 +97,7 @@
                             <a href="{{ route('admin.strukturorganisasi.index') }}" class="block px-6 py-3 hover:bg-yellow-50 text-gray-700">Struktur Organisasi</a>
                         </li>
                         <li>
-                            <a href="/admin/profil/tupoksi" class="block px-6 py-3 hover:bg-yellow-50 text-gray-700">Tupoksi</a>
+                            <a href="{{ route('admin.tupoksi.index') }}" class="block px-6 py-3 hover:bg-yellow-50 text-gray-700">Tupoksi</a>
                         </li>
                         <li>
                             <a href="/admin/profil/maklumat-pelayanan" class="block px-6 py-3 hover:bg-yellow-50 text-gray-700">Maklumat Pelayanan</a>
@@ -113,11 +113,11 @@
             <a href="/admin/settings" class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow duration-300">
                 <div class="flex items-center">
                     <div class="p-3 bg-red-100 rounded-full">
-                        <i class="fas fa-cog text-red-600 text-xl"></i>
+                        <i class="fas fa-concierge-bell text-red-600 text-xl"></i>
                     </div>
                     <div class="ml-4">
-                        <h3 class="text-lg font-semibold text-gray-900">Pengaturan</h3>
-                        <p class="text-sm text-gray-500">Konfigurasi sistem</p>
+                        <h3 class="text-lg font-semibold text-gray-900">Kelola Layanan</h3>
+                        <p class="text-sm text-gray-500">Edit halaman Layanan</p>
                     </div>
                 </div>
             </a>
@@ -126,11 +126,11 @@
             <a href="/admin/backup" class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow duration-300">
                 <div class="flex items-center">
                     <div class="p-3 bg-indigo-100 rounded-full">
-                        <i class="fas fa-shield-alt text-indigo-600 text-xl"></i>
+                        <i class="fas fa-shoe-prints text-indigo-600 text-xl"></i>
                     </div>
                     <div class="ml-4">
-                        <h3 class="text-lg font-semibold text-gray-900">Backup & Keamanan</h3>
-                        <p class="text-sm text-gray-500">Backup data dan keamanan</p>
+                        <h3 class="text-lg font-semibold text-gray-900">Kelola Footer</h3>
+                        <p class="text-sm text-gray-500">Edit konten Footer</p>
                     </div>
                 </div>
             </a>

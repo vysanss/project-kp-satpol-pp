@@ -21,9 +21,7 @@ Route::get('/profilpimpinan', [ProfilPimpinanController::class, 'index'])->name(
 
 Route::get('/strukturorganisasi', [\App\Http\Controllers\StrukturOrganisasiController::class, 'index'])->name('strukturorganisasi');
 
-Route::get('/tupoksi', function () {
-    return view('tupoksi');
-})->name('tupoksi');
+Route::get('/tupoksi', [\App\Http\Controllers\TupoksiController::class, 'index'])->name('tupoksi');
 
 Route::get('/maklumatpelayanan', function () {
     return view('maklumatpelayanan');
@@ -93,6 +91,10 @@ Route::prefix('admin')->middleware(['auth:admin'])->group(function () {
     Route::post('strukturorganisasi', [AdminStrukturOrganisasiController::class, 'store'])->name('admin.strukturorganisasi.store');
     Route::put('strukturorganisasi/{id}', [AdminStrukturOrganisasiController::class, 'update'])->name('admin.strukturorganisasi.update');
     Route::delete('strukturorganisasi/{id}', [AdminStrukturOrganisasiController::class, 'destroy'])->name('admin.strukturorganisasi.destroy');
+    Route::get('tupoksi', [\App\Http\Controllers\Admin\TupoksiController::class, 'index'])->name('admin.tupoksi.index');
+    Route::post('tupoksi', [\App\Http\Controllers\Admin\TupoksiController::class, 'store'])->name('admin.tupoksi.store');
+    Route::put('tupoksi/{id}', [\App\Http\Controllers\Admin\TupoksiController::class, 'update'])->name('admin.tupoksi.update');
+    Route::delete('tupoksi/{id}', [\App\Http\Controllers\Admin\TupoksiController::class, 'destroy'])->name('admin.tupoksi.destroy');
 });
 
 // Tambahkan route berikut untuk admin-berita
