@@ -37,7 +37,9 @@ Route::post('/berita/detail', [BeritaController::class, 'detail'])->name('berita
 
 Route::get('/layanan', [LayananController::class, 'index'])->name('layanan');
 
-Route::get('/artikel', [ArtikelController::class, 'index'])->name('artikel');
+Route::get('/artikel', [BeritaController::class, 'artikel'])->name('artikel');
+Route::post('/artikel/detail', [BeritaController::class, 'detail'])->name('artikel.detail');
+
 
 Route::get('/produk-hukum', [PdfController::class, 'produkHukum'])->name('produk-hukum');
 Route::get('/pdf/download/{id}', [PdfController::class, 'download'])->name('pdf.download');

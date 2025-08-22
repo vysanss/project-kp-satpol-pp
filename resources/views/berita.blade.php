@@ -127,7 +127,7 @@
                     <!-- News Grid -->
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="news-grid">
                         {{-- News cards from database --}}
-                        @forelse($beritas as $berita)
+                        @forelse($beritas->where('category', 'Berita') as $berita)
                         <article class="news-card bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl hover:scale-105 transition-all duration-300 cursor-pointer group">
                             <div class="relative overflow-hidden">
                                 <img src="{{ asset('storage/' . $berita->image) }}" 

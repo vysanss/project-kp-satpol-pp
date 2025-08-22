@@ -29,6 +29,26 @@ class BeritaController extends Controller
         return view('berita', compact('beritas'));
     }
 
+    public function artikel(Request $request)
+    {
+        $query = Berita::where('category', 'Artikel');
+
+        if ($request->filled('search')) {
+            $query->where(function($q) use ($request) {
+                $q->where('title', 'like', '%' . $request->search . '%')
+                  ->orWhere('content', 'like', '%' . $request->search . '%');
+            });
+        }
+
+        if ($request->filled('year')) {
+            $query->whereYear('published_at', $request->year);
+        }
+
+        $beritas = $query->orderBy('published_at', 'desc')->paginate(9);
+
+        return view('artikel', compact('beritas'));
+    }
+
     public function show($id)
     {
         $berita = Berita::findOrFail($id);
@@ -42,7 +62,10 @@ class BeritaController extends Controller
         ]);
         
         $berita = Berita::findOrFail($request->berita_id);
-        
+
+        if ($berita->category === 'Artikel') {
+            return view('artikel-detail', compact('berita'));
+        }
         return view('berita-detail', compact('berita'));
     }
 }
