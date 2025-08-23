@@ -114,9 +114,15 @@ Route::prefix('admin')->middleware(['auth:admin'])->group(function () {
     Route::post('layanan', [\App\Http\Controllers\Admin\LayananController::class, 'store'])->name('admin.layanan.store');
     Route::put('layanan/{id}', [\App\Http\Controllers\Admin\LayananController::class, 'update'])->name('admin.layanan.update');
     Route::delete('layanan/{id}', [\App\Http\Controllers\Admin\LayananController::class, 'destroy'])->name('admin.layanan.destroy');
+    Route::get('footer', [\App\Http\Controllers\Admin\FooterController::class, 'index'])->name('admin.footer.index');
+    Route::post('footer', [\App\Http\Controllers\Admin\FooterController::class, 'store'])->name('admin.footer.store');
+    Route::put('footer/{id}', [\App\Http\Controllers\Admin\FooterController::class, 'update'])->name('admin.footer.update');
+    Route::delete('footer/{id}', [\App\Http\Controllers\Admin\FooterController::class, 'destroy'])->name('admin.footer.destroy');
 });
 
-// Tambahkan route berikut untuk admin-berita
+// Tambahkan route untuk admin-berita
 Route::get('/admin/berita', [AdminBeritaController::class, 'index'])->name('admin-berita')->middleware('auth:admin');
 // Add this route for CKEditor image upload
 Route::post('/admin/berita/upload-image', [App\Http\Controllers\Admin\BeritaController::class, 'uploadImage'])->name('berita.upload-image');
+// Tambahkan route untuk admin-footer
+Route::get('/admin/footer', [\App\Http\Controllers\Admin\FooterController::class, 'index'])->name('admin-footer')->middleware('auth:admin');

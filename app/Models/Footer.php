@@ -9,15 +9,15 @@ class Footer extends Model
 {
     use HasFactory;
 
+    protected $table = 'footers';
+
     protected $fillable = [
-        'deskripsi', 
-        'layanan',
+        'deskripsi',
+        'layanan'
     ];
 
     protected $casts = [
-        'is_active' => 'boolean'
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime',
     ];
-
-    // Scope untuk footer aktif
-
 }
