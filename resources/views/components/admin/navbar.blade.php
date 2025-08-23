@@ -69,7 +69,13 @@
                                 <i class="fas fa-file-contract mr-3 text-orange-500"></i>
                                 Dokumen
                             </a>
-
+                            <a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                                <i class="fas fa-image mr-3 text-green-500"></i>
+                                Banner
+                            </a>
+                            <a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                                <i class="fas fa-shoe-prints mr-3 text-red-500"></i>
+                                Footer
                             </a>
                         </div>
                     </div>
