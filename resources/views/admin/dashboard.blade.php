@@ -110,7 +110,7 @@
             </div>
             
             <!-- Settings -->
-            <a href="/admin/settings" class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow duration-300">
+            <a href="{{ route('admin.layanan.index') }}" class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow duration-300">
                 <div class="flex items-center">
                     <div class="p-3 bg-red-100 rounded-full">
                         <i class="fas fa-concierge-bell text-red-600 text-xl"></i>

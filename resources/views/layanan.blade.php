@@ -10,6 +10,7 @@
     <link rel="manifest" href="/img/favicon/site.webmanifest">
     @vite('resources/css/app.css')
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <title>Layanan - Satpol PP Tasikmalaya</title>
 </head>
@@ -29,10 +30,24 @@
                         <div class="flex flex-col lg:flex-row gap-8">
                             <div class="flex-1">
                                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+                                    @php
+                                        use Illuminate\Support\Str;
+                                    @endphp
                                     @foreach($layanans as $layanan)
                                     <div class="bg-gray-50 rounded-lg shadow p-6 flex flex-col items-center h-full transform hover:scale-105 transition-transform duration-200">
-                                        <div class="rounded-full p-4 mb-4" style="background-color: #f0f4ff;">
-                                            {!! $layanan->icon !!}
+                                        <div class="rounded-full p-4 mb-4 flex items-center justify-center" style="background-color: #f0f4ff;">
+                                            @php
+                                                $icon = $layanan->icon;
+                                            @endphp
+                                            @if(Str::startsWith($icon, '<svg'))
+                                                <span style="width:3rem;height:3rem;display:flex;align-items:center;justify-content:center;">
+                                                    {!! $icon !!}
+                                                </span>
+                                            @elseif(Str::contains($icon, 'fa-'))
+                                                <i class="{{ $icon }} fa-2x text-blue-500"></i>
+                                            @else
+                                                <x-dynamic-icon :name="$icon" class="h-12 w-12 text-blue-500" />
+                                            @endif
                                         </div>
                                         <h2 class="text-xl font-semibold mb-2 text-center">{{ $layanan->title }}</h2>
                                         <p class="text-gray-600 text-center">
@@ -42,35 +57,7 @@
                                     @endforeach
                                 </div>
                             </div>
-                            <!-- Card Kontak -->
-                            <div class="w-full lg:w-80 xl:w-96 flex-shrink-0">
-                                <div class="bg-gradient-to-br from-blue-50 to-white border border-gray-200 rounded-lg shadow-lg p-6 h-full sticky top-8">
-                                    <div class="bg-blue-500 text-white rounded-full p-3 mb-4 flex flex-row items-center justify-center gap-2">
-                                        <!-- Icon: Phone -->
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 mb-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H5a2 2 0 01-2-2V5zm0 10a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H5a2 2 0 01-2-2v-2zm10-10a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zm0 10a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
-                                        </svg>
-                                        <span class="text-lg font-bold text-white text-center">Kontak Satpol PP</span>
-                                    </div>
-                                    <ul class="text-gray-700 text-sm space-y-2 w-full">
-                                        <li class="flex items-center gap-2">
-                                            <span class="font-semibold">Telepon:</span>
-                                            <span>0821-1941-1145</span>
-                                        </li>
-                                        <li class="flex items-center gap-2">
-                                            <span class="font-semibold">Email:</span>
-                                            <span>satpolpp@tasikmalayakota.go.id</span>
-                                        </li>
-                                        <li class="flex items-center gap-2">
-                                            <span class="font-semibold">Alamat:</span>
-                                            <span>Jl. Ir. H. Juanda No. 191, Kota Tasikmalaya</span>
-                                        </li>
-                                    </ul>
-                                    <a href="mailto:satpolpp@tasikmalayakota.go.id" class="mt-4 inline-block bg-blue-500 hover:bg-blue-600 text-white font-semibold px-4 py-2 rounded transition">
-                                        Kirim Email
-                                    </a>
-                                </div>
-                            </div>
+
                         </div>
                     </div>
                 </div>

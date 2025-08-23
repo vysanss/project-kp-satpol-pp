@@ -110,6 +110,10 @@ Route::prefix('admin')->middleware(['auth:admin'])->group(function () {
             'create' => 'admin.profilpimpinan.create',
         ]
     ]);
+    Route::get('layanan', [\App\Http\Controllers\Admin\LayananController::class, 'index'])->name('admin.layanan.index');
+    Route::post('layanan', [\App\Http\Controllers\Admin\LayananController::class, 'store'])->name('admin.layanan.store');
+    Route::put('layanan/{id}', [\App\Http\Controllers\Admin\LayananController::class, 'update'])->name('admin.layanan.update');
+    Route::delete('layanan/{id}', [\App\Http\Controllers\Admin\LayananController::class, 'destroy'])->name('admin.layanan.destroy');
 });
 
 // Tambahkan route berikut untuk admin-berita
