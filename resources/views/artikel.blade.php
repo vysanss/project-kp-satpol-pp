@@ -176,7 +176,10 @@
         </main>
     </div>
     
-    <x-footer />
+    @php
+        $footer = App\Models\Footer::first() ?? null;
+    @endphp
+    <x-footer :footer="$footer" />
 
     <script>
         // Auto scroll to top on page load/refresh

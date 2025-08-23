@@ -530,6 +530,9 @@
         </section>
       </main>
     </div>
-    <x-footer></x-footer>
+    @php
+        $footer = App\Models\Footer::first() ?? null;
+    @endphp
+    <x-footer :footer="$footer" />
   </body>
 </html>
