@@ -11,11 +11,12 @@ use App\Http\Controllers\Admin\BeritaController as AdminBeritaController; // Unt
 use App\Http\Controllers\Admin\StrukturOrganisasiController as AdminStrukturOrganisasiController;
 use App\Http\Controllers\MPelayananController;
 use App\Http\Controllers\AdminMPelayananController;
+use App\Http\Controllers\HomeController;
 
 
 
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
+Route::get('/', [HomeController::class, 'index']);
 
 Route::get('/tentangkami', [App\Http\Controllers\TentangKamiController::class, 'index'])->name('tentangkami');
 
