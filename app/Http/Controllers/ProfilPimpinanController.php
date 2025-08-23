@@ -16,3 +16,6 @@ class ProfilPimpinanController extends Controller
         return view('profilpimpinan', compact('pimpinan'));
     }
 }
+
+
+

@@ -103,7 +103,7 @@
                             <a href="{{ route('admin.pelayanan.index') }}" class="block px-6 py-3 hover:bg-yellow-50 text-gray-700">Maklumat Pelayanan</a>
                         </li>
                         <li>
-                            <a href="/admin/profil/pimpinan" class="block px-6 py-3 hover:bg-yellow-50 text-gray-700">Profil Pimpinan</a>
+                            <a href="{{ route('admin.profilpimpinan.index') }}" class="block px-6 py-3 hover:bg-yellow-50 text-gray-700">Profil Pimpinan</a>
                         </li>
                     </ul>
                 </div>

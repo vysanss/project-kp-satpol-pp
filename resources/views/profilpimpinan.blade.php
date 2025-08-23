@@ -46,7 +46,13 @@
                                     <div class="lg:col-span-1">
                                         <div class="relative">
                                             <div class="w-64 h-80 mx-auto bg-gray-200 rounded-lg overflow-hidden shadow-lg">
-                                                <img src="{{ asset($leader->foto) }}" alt="{{ $leader->nama }}" class="w-full h-full object-cover">
+                                                @if($leader->foto)
+                                                    <img src="{{ asset('storage/' . $leader->foto) }}" alt="{{ $leader->nama }}" class="w-full h-full object-cover">
+                                                @else
+                                                    <div class="w-full h-full flex items-center justify-center text-gray-400">
+                                                        <span>Foto Tidak Tersedia</span>
+                                                    </div>
+                                                @endif
                                             </div>
                                             <div class="absolute -bottom-4 left-1/2 transform -translate-x-1/2">
                                                 <div class="bg-blue-600 text-white px-6 py-2 rounded-full text-sm font-medium">
@@ -60,16 +66,20 @@
                                     <div class="lg:col-span-2">
                                         <div class="space-y-6">
                                             <div>
-                                                <h3 class="text-2xl font-bold text-gray-900 mb-2">{{ $leader->nama_lengkap }}</h3>
+                                                <h3 class="text-2xl font-bold text-gray-900 mb-2">
+                                                    {{ trim(($leader->gelar_depan ?? '') . ' ' . $leader->nama . ' ' . ($leader->gelar_belakang ?? '')) }}
+                                                </h3>
                                                 <p class="text-lg text-blue-600 font-medium">{{ $leader->jabatan }}</p>
                                             </div>
                                             
+                                            @if($leader->pesan)
                                             <div class="bg-gray-50 rounded-lg p-6">
                                                 <h4 class="font-semibold text-gray-900 mb-3">Pesan Pimpinan</h4>
-                                                <p class="text-gray-700 leading-relaxed italic">
-                                                    "{{ $leader->pesan }}"
-                                                </p>
+                                                <div class="text-gray-700 leading-relaxed">
+                                                    <em>{!! $leader->pesan !!}</em>
+                                                </div>
                                             </div>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
