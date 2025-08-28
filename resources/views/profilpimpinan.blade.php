@@ -54,11 +54,11 @@
                                                     </div>
                                                 @endif
                                             </div>
-                                            <div class="absolute -bottom-4 left-1/2 transform -translate-x-1/2">
+                                            {{-- <div class="absolute -bottom-4 left-1/2 transform -translate-x-1/2">
                                                 <div class="bg-blue-600 text-white px-6 py-2 rounded-full text-sm font-medium">
                                                     {{ explode(' ', $leader->jabatan)[0] }} {{ explode(' ', $leader->jabatan)[1] ?? '' }}
                                                 </div>
-                                            </div>
+                                            </div> --}}
                                         </div>
                                     </div>
                                     

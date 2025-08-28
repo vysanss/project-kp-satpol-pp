@@ -59,26 +59,7 @@
 
         <!-- CRUD Struktur Organisasi -->
         <div class="grid grid-cols-1 gap-6 mb-8">
-            <!-- Form Tambah -->
-            <div class="bg-white rounded-2xl shadow-lg p-6 border border-gray-100 mb-6">
-                <h3 class="text-xl font-bold text-gray-900 mb-4">Tambah Struktur Organisasi</h3>
-                <form action="{{ route('admin.strukturorganisasi.store') }}" method="POST" enctype="multipart/form-data" class="space-y-4">
-                    @csrf
-                    <div>
-                        <label class="block text-gray-700 text-sm font-semibold mb-2" for="foto">Foto</label>
-                        <input class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-gray-50"
-                               id="foto" name="foto" type="file" accept="image/*">
-                    </div>
-                    <div>
-                        <label class="block text-gray-700 text-sm font-semibold mb-2" for="deskripsi">Deskripsi</label>
-                        <textarea class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-gray-50"
-                                  id="deskripsi" name="deskripsi" rows="3"></textarea>
-                    </div>
-                    <button class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-xl transition-all duration-200" type="submit">
-                        <i class="fas fa-plus mr-2"></i>Tambah
-                    </button>
-                </form>
-            </div>
+
 
             <!-- Tabel Data -->
             <div class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-x-auto">
